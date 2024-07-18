@@ -1,9 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://btd23m8n5bmwq"]
 
 [ext_resource type="Script" path="res://gameplay/SceneManager.gd" id="1_v7pjo"]
-[ext_resource type="PackedScene" uid="uid://c0aqepdqdccel" path="res://gameplay/Gameplay.tscn" id="2_rmyuh"]
+[ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/HUD.tscn" id="3_s22ck"]
 
-[node name="SceneManager" type="Node2D"]
+[node name="SceneManager" type="Node"]
 script = ExtResource("1_v7pjo")
 
-[node name="Gameplay" parent="." instance=ExtResource("2_rmyuh")]
+[node name="Level" type="Node2D" parent="."]
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UserInterface" instance=ExtResource("3_s22ck")]

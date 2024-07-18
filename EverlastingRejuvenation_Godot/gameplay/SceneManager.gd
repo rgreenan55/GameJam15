@@ -1,6 +1,5 @@
-class_name SceneManager extends Node2D
+class_name SceneManager extends Node
 
-@onready var gameplay : Node2D = get_node("Gameplay");
 @onready var level_id : int = 0;
 var current_level : PackedScene;
 
@@ -13,7 +12,7 @@ func _process(_delta: float) -> void:
 		next_scene();
 
 func next_scene():
-	remove_child(get_node("Level" + str(level_id)));
+	get_node("Level").remove_child(get_node("Level" + str(level_id)));
 	level_id += 1;
 	load_scene();
 
@@ -22,13 +21,6 @@ func load_scene():
 	var level_node : Level = current_level.instantiate();
 
 	# Handle Level Instructions
-	gameplay.get_node("Wizard").position = level_node.spawn_position;
-	gameplay.get_node("UserInterface").visible = level_node.hud_active;
-	clean_gameplay();
-
-	add_child(level_node);
-	move_child(level_node, 0);
-
-func clean_gameplay():
-	for potion in gameplay.get_node("PotionHandler/Potions").get_children():
-		potion.queue_free();
+	get_node("UserInterface").visible = level_node.hud_active;
+	get_node("Level").add_child(level_node);
+	get_node("Level").move_child(level_node, 0);

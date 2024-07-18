@@ -62,3 +62,9 @@ script = ExtResource("3_oebi6")
 [node name="PotionLandedState" type="Node" parent="PotionStateMachine"]
 script = ExtResource("4_s0nfk")
 potion_area_of_effect = ExtResource("5_5281m")
+
+[node name="Timer" type="Timer" parent="PotionStateMachine/PotionLandedState"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="PotionStateMachine/PotionLandedState/Timer" to="." method="queue_free"]

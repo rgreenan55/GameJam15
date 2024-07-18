@@ -1,37 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0aqepdqdccel"]
+[gd_scene load_steps=3 format=3 uid="uid://c0aqepdqdccel"]
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_2wuhn"]
 [ext_resource type="PackedScene" uid="uid://dxq8ityqefb8h" path="res://entities/player/Wizard.tscn" id="1_ctqi5"]
-[ext_resource type="Script" path="res://gameplay/PotionHandler.gd" id="2_a2uw8"]
-[ext_resource type="PackedScene" uid="uid://ptgedtdlu4ej" path="res://entities/potions/Potion.tscn" id="3_pavhi"]
-[ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/HUD.tscn" id="3_vo2nn"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xtqo2"]
-radius = 150.0
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_2wuhn")
 
 [node name="Wizard" parent="." instance=ExtResource("1_ctqi5")]
-
-[node name="PotionThrowArea" type="Area2D" parent="Wizard"]
-
-[node name="PotionThrowRange" type="CollisionShape2D" parent="Wizard/PotionThrowArea"]
-shape = SubResource("CircleShape2D_xtqo2")
-
-[node name="PotionHandler" type="Node2D" parent="."]
-script = ExtResource("2_a2uw8")
-potion_scene = ExtResource("3_pavhi")
-
-[node name="Potions" type="Node2D" parent="PotionHandler"]
-
-[node name="ThrowLine" type="Line2D" parent="PotionHandler"]
-width = 1.0
-
-[node name="UserInterface" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="UserInterface" instance=ExtResource("3_vo2nn")]
-
-[connection signal="input_event" from="Wizard/PotionThrowArea" to="PotionHandler" method="_on_potion_area_input_event"]
-[connection signal="mouse_entered" from="Wizard/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]
-[connection signal="mouse_exited" from="Wizard/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_exited"]
