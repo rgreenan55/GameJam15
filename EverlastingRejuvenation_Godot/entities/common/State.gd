@@ -7,14 +7,15 @@ signal transitioned(new_state_name : StringName)
 
 # When Entering this State
 func Enter() -> void:
-	parent.get_node("Visuals/Animations").play(animation_name);
+	if (animation_name):
+		parent.get_node("Visuals/Animations").play(animation_name);
 
 # When Exiting this State
 func Exit() -> void:
 	pass;
 
 # Handle User Inputs
-func Process_Input(_input : InputEvent) -> void:
+func Process_Input(_event : InputEvent) -> void:
 	pass;
 
 # Perform at Process Calls

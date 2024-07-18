@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bah5xda72mqtn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1uoq"]
+radius = 50.0
+
+[node name="PotionAreaOfEffect" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o1uoq")

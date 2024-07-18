@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxq8ityqefb8h"]
+[gd_scene load_steps=17 format=3 uid="uid://dxq8ityqefb8h"]
 
 [ext_resource type="Script" path="res://entities/player/scripts/Wizard.gd" id="1_ee4lp"]
-[ext_resource type="Texture2D" uid="uid://cmc86ua4gay7n" path="res://entities/player/assets/Wizard.png" id="2_pv3yr"]
+[ext_resource type="Texture2D" uid="uid://xi3t14gfl12t" path="res://entities/player/assets/WizardSpriteSheet.png" id="2_wvjok"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="3_u3o3x"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardIdleState.gd" id="4_gpqla"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardWalkingState.gd" id="5_nupd3"]
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [10]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_j6ovc"]
@@ -40,11 +40,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+"values": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
 }
 
 [sub_resource type="Animation" id="Animation_nwbfi"]
 resource_name = "idle"
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,14 +54,61 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1]
+"values": [40]
+}
+
+[sub_resource type="Animation" id="Animation_s42ku"]
+resource_name = "long_idle_loop"
+length = 2.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [63, 64, 65, 66, 67, 68, 69]
+}
+
+[sub_resource type="Animation" id="Animation_g7vpc"]
+resource_name = "long_idle_start"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [60, 61, 62]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Animations:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"long_idle_loop"]
 }
 
 [sub_resource type="Animation" id="Animation_yotiy"]
 resource_name = "walking"
+length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -69,10 +117,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkimf"]
@@ -80,6 +128,8 @@ _data = {
 "RESET": SubResource("Animation_14bpr"),
 "dying": SubResource("Animation_j6ovc"),
 "idle": SubResource("Animation_nwbfi"),
+"long_idle_loop": SubResource("Animation_s42ku"),
+"long_idle_start": SubResource("Animation_g7vpc"),
 "walking": SubResource("Animation_yotiy")
 }
 
@@ -91,8 +141,10 @@ height = 14.0
 radius = 1.0
 height = 8.0
 
-[node name="Wizard" type="CharacterBody2D" groups=["Player"]]
+[node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
 z_index = 1
+collision_layer = 4
+collision_mask = 19
 script = ExtResource("1_ee4lp")
 
 [node name="Visuals" type="Node2D" parent="."]
@@ -109,10 +161,9 @@ scale_amount_curve = SubResource("Curve_e31wg")
 color = Color(0.760784, 0.760784, 0.760784, 1)
 
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("2_pv3yr")
-hframes = 10
-vframes = 10
-frame = 10
+texture = ExtResource("2_wvjok")
+hframes = 20
+vframes = 20
 
 [node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Sprite")
@@ -141,6 +192,10 @@ current_state = NodePath("WizardWalkingState")
 script = ExtResource("4_gpqla")
 animation_name = "idle"
 
+[node name="LongIdleDelay" type="Timer" parent="WizardStateMachine/WizardIdleState"]
+wait_time = 5.0
+one_shot = true
+
 [node name="WizardWalkingState" type="Node" parent="WizardStateMachine"]
 script = ExtResource("5_nupd3")
 animation_name = "walking"
@@ -148,3 +203,5 @@ animation_name = "walking"
 [node name="WizardDyingState" type="Node" parent="WizardStateMachine"]
 script = ExtResource("6_koe07")
 animation_name = "dying"
+
+[connection signal="timeout" from="WizardStateMachine/WizardIdleState/LongIdleDelay" to="WizardStateMachine/WizardIdleState" method="_on_long_idle_delay_timeout"]

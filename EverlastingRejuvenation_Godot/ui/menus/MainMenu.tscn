@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cmc86ua4gay7n" path="res://entities/player/assets/Wizard.png" id="1_m67vu"]
 [ext_resource type="Script" path="res://ui/menus/MainMenu.gd" id="1_ufc0d"]
-[ext_resource type="PackedScene" uid="uid://btd23m8n5bmwq" path="res://scenes/common/SceneManager.tscn" id="2_tmgjs"]
+[ext_resource type="PackedScene" uid="uid://btd23m8n5bmwq" path="res://gameplay/SceneManager.tscn" id="2_tmgjs"]
 
 [sub_resource type="Gradient" id="Gradient_w8xab"]
 

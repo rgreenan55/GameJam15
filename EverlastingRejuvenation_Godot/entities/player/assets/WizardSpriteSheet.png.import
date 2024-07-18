@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj4wx6i4v4rxx"
-path="res://.godot/imported/Tileset.png-2f1547a568c71e1ccc296cfea85977de.ctex"
+uid="uid://xi3t14gfl12t"
+path="res://.godot/imported/WizardSpriteSheet.png-ee7d7f827b8d7a6f6c465e4f22e56c83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/common/tilesets/Tileset.png"
-dest_files=["res://.godot/imported/Tileset.png-2f1547a568c71e1ccc296cfea85977de.ctex"]
+source_file="res://entities/player/assets/WizardSpriteSheet.png"
+dest_files=["res://.godot/imported/WizardSpriteSheet.png-ee7d7f827b8d7a6f6c465e4f22e56c83.ctex"]
 
 [params]
 

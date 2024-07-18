@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0aqepdqdccel"]
+
+[ext_resource type="PackedScene" uid="uid://dxq8ityqefb8h" path="res://entities/player/Wizard.tscn" id="1_ctqi5"]
+[ext_resource type="Script" path="res://gameplay/PotionHandler.gd" id="2_a2uw8"]
+[ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/HUD.tscn" id="3_vo2nn"]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Wizard" parent="." instance=ExtResource("1_ctqi5")]
+
+[node name="PotionHandler" type="Node2D" parent="Wizard"]
+script = ExtResource("2_a2uw8")
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UserInterface" instance=ExtResource("3_vo2nn")]
