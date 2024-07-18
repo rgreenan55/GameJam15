@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cniagys5rwat6"]
+
+[sub_resource type="Gradient" id="Gradient_vtcwr"]
+offsets = PackedFloat32Array(0.807453)
+colors = PackedColorArray(0.194349, 0.194349, 0.194349, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ytyno"]
+gradient = SubResource("Gradient_vtcwr")
+width = 16
+height = 16
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ytyno")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ytyno")
+stretch_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ytyno")
+stretch_mode = 3
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ytyno")
+stretch_mode = 3

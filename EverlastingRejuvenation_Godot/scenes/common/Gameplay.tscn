@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0aqepdqdccel"]
+
+[ext_resource type="PackedScene" uid="uid://dxq8ityqefb8h" path="res://entities/player/Wizard.tscn" id="1_fbq1v"]
+[ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/HUD.tscn" id="1_lhyc5"]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Wizard" parent="." instance=ExtResource("1_fbq1v")]
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UserInterface" instance=ExtResource("1_lhyc5")]

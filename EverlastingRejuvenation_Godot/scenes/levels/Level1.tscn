@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://by631va8liify"]
+
+[ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_v5ocm"]
+
+[sub_resource type="Gradient" id="Gradient_6maul"]
+offsets = PackedFloat32Array(0, 0.0124224)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v7ly5"]
+gradient = SubResource("Gradient_6maul")
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_v5ocm")
+spawn_position = Vector2(100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(98, 11)
+texture = SubResource("GradientTexture2D_v7ly5")
