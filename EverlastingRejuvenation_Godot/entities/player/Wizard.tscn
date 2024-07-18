@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxq8ityqefb8h"]
+[gd_scene load_steps=15 format=3 uid="uid://dxq8ityqefb8h"]
 
 [ext_resource type="Script" path="res://entities/player/scripts/Wizard.gd" id="1_ee4lp"]
 [ext_resource type="Texture2D" uid="uid://cmc86ua4gay7n" path="res://entities/player/assets/Wizard.png" id="2_pv3yr"]
-[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="3_u3o3x"]
+[ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="3_u3o3x"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardIdleState.gd" id="4_gpqla"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardWalkingState.gd" id="5_nupd3"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardDyingState.gd" id="6_koe07"]
@@ -43,8 +43,8 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 }
 
-[sub_resource type="Animation" id="Animation_yotiy"]
-resource_name = "walking"
+[sub_resource type="Animation" id="Animation_nwbfi"]
+resource_name = "idle"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,8 +59,8 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_nwbfi"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_yotiy"]
+resource_name = "walking"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -91,21 +91,13 @@ height = 14.0
 radius = 1.0
 height = 8.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tbtct"]
-polygon = PackedVector2Array(-5, 8, 4, 8, 0, 0)
-
 [node name="Wizard" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = ExtResource("1_ee4lp")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_pv3yr")
-hframes = 10
-vframes = 10
-frame = 10
+[node name="Visuals" type="Node2D" parent="."]
 
-[node name="WalkingParticles" type="CPUParticles2D" parent="Sprite"]
-z_index = -1
+[node name="WalkingParticles" type="CPUParticles2D" parent="Visuals"]
 position = Vector2(0, 5)
 amount = 3
 lifetime = 0.25
@@ -116,7 +108,13 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_e31wg")
 color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[node name="Animations" type="AnimationPlayer" parent="."]
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("2_pv3yr")
+hframes = 10
+vframes = 10
+frame = 10
+
+[node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_mkimf")
@@ -150,6 +148,3 @@ animation_name = "walking"
 [node name="WizardDyingState" type="Node" parent="WizardStateMachine"]
 script = ExtResource("6_koe07")
 animation_name = "dying"
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_tbtct")

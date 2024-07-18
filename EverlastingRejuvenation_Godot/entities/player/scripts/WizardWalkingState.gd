@@ -3,16 +3,16 @@ class_name WizardWalkingState extends State
 const SPEED : float = 100;
 
 func Exit() -> void:
-	parent.get_node("Sprite").get_node("WalkingParticles").emitting = false;
+	parent.get_node("Visuals/WalkingParticles").emitting = false;
 
 func Update(_delta: float) -> void:
 	# Handle Sprite Direction Based on Movement
-	parent.get_node("Sprite").get_node("WalkingParticles").emitting = true;
+	parent.get_node("Visuals/WalkingParticles").emitting = true;
 	if (parent.velocity.x != 0):
 		if (parent.velocity.x < 0):
-			parent.get_node("Sprite").flip_h = true;
+			parent.get_node("Visuals/Sprite").flip_h = true;
 		else:
-			parent.get_node("Sprite").flip_h = false;
+			parent.get_node("Visuals/Sprite").flip_h = false;
 
 func Physics_Update(_delta: float) -> void:
 	var direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
