@@ -4,4 +4,4 @@ class_name Potion extends CharacterBody2D
 @export var end_position : Vector2;
 @export var mid_position : Vector2;
 
-@export var effect : int;
+@export var effect : Color = Color(randf(), randf(), randf())

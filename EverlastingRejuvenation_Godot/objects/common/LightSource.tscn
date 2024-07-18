@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6vtgfltf3a4k"]
+
+[ext_resource type="Script" path="res://objects/common/LightSource.gd" id="1_raovu"]
+
+[sub_resource type="Gradient" id="Gradient_inb8g"]
+offsets = PackedFloat32Array(0.369565, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s377l"]
+gradient = SubResource("Gradient_inb8g")
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yk8up"]
+noise_type = 5
+frequency = 0.75
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_urwnh"]
+noise = SubResource("FastNoiseLite_yk8up")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2cyob"]
+radius = 80.0
+
+[node name="LightSource" type="PointLight2D"]
+color = Color(0.866667, 0.345098, 0.156863, 1)
+shadow_enabled = true
+shadow_color = Color(0.12549, 0.101961, 0.160784, 1)
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_s377l")
+script = ExtResource("1_raovu")
+noise = SubResource("NoiseTexture2D_urwnh")
+
+[node name="Area2D" type="Area2D" parent="." groups=["LightSource"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2cyob")

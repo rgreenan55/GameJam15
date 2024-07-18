@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0aqepdqdccel"]
+[gd_scene load_steps=6 format=3 uid="uid://c0aqepdqdccel"]
 
-[ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_2wuhn"]
 [ext_resource type="PackedScene" uid="uid://dxq8ityqefb8h" path="res://entities/player/Wizard.tscn" id="1_ctqi5"]
 [ext_resource type="Script" path="res://gameplay/PotionHandler.gd" id="2_a2uw8"]
 [ext_resource type="PackedScene" uid="uid://ptgedtdlu4ej" path="res://entities/potions/Potion.tscn" id="3_pavhi"]
@@ -10,7 +9,6 @@
 radius = 150.0
 
 [node name="Gameplay" type="Node2D"]
-script = ExtResource("1_2wuhn")
 
 [node name="Wizard" parent="." instance=ExtResource("1_ctqi5")]
 

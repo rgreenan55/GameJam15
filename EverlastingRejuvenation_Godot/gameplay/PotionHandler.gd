@@ -3,8 +3,6 @@ class_name PotionHandler extends Node2D
 @export var potion_scene : PackedScene;
 @onready var player = get_node("../Wizard");
 
-
-
 # Position Tracking
 var player_position : Vector2;
 var mouse_position : Vector2;
@@ -15,7 +13,7 @@ func _process(_delta: float) -> void:
 	# Handle On/Off Until Mixing Setup
 	if (Input.is_action_just_pressed("TogglePotion")):
 		$"../Wizard/PotionThrowArea/PotionThrowRange".disabled = !$"../Wizard/PotionThrowArea/PotionThrowRange".disabled;
-		get_node("ThrowLine").visible = false;
+		get_node("ThrowLine").visible = $"../Wizard/PotionThrowArea/PotionThrowRange".disabled;
 
 	# Get Positons for Bezier Curve
 	player_position = player.position;

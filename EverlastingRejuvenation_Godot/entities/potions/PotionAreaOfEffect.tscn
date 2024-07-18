@@ -1,9 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bah5xda72mqtn"]
+[gd_scene load_steps=3 format=3 uid="uid://bah5xda72mqtn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o1uoq"]
-radius = 50.0
+radius = 32.0
+
+[sub_resource type="Curve" id="Curve_puudr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="PotionAreaOfEffect" type="Area2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="AreaOfEffect" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o1uoq")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angular_velocity_max = 360.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_puudr")

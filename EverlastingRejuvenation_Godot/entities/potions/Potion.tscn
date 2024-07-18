@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ptgedtdlu4ej"]
+[gd_scene load_steps=11 format=3 uid="uid://ptgedtdlu4ej"]
 
 [ext_resource type="Script" path="res://entities/potions/Potion.gd" id="1_na65a"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_ga8sw"]
 [ext_resource type="Script" path="res://entities/potions/PotionThrownState.gd" id="3_oebi6"]
 [ext_resource type="Script" path="res://entities/potions/PotionLandedState.gd" id="4_s0nfk"]
+[ext_resource type="PackedScene" uid="uid://bah5xda72mqtn" path="res://entities/potions/PotionAreaOfEffect.tscn" id="5_5281m"]
 
 [sub_resource type="Gradient" id="Gradient_pkdkn"]
 interpolation_mode = 1
@@ -60,3 +61,4 @@ script = ExtResource("3_oebi6")
 
 [node name="PotionLandedState" type="Node" parent="PotionStateMachine"]
 script = ExtResource("4_s0nfk")
+potion_area_of_effect = ExtResource("5_5281m")
