@@ -1,42 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cniagys5rwat6"]
+[gd_scene load_steps=2 format=3 uid="uid://cniagys5rwat6"]
 
-[sub_resource type="Gradient" id="Gradient_vtcwr"]
-offsets = PackedFloat32Array(0.807453)
-colors = PackedColorArray(0.194349, 0.194349, 0.194349, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ytyno"]
-gradient = SubResource("Gradient_vtcwr")
-width = 16
-height = 16
+[ext_resource type="PackedScene" uid="uid://cmjst4b06xjbi" path="res://ui/menus/hud/HotbarSlot.tscn" id="1_tp6w6"]
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 640.0
+offset_bottom = 360.0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="HotbarSlot" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_ytyno")
-stretch_mode = 3
+key_toggle = &"Ingredient1"
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="HotbarSlot2" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_ytyno")
-stretch_mode = 3
+key_toggle = &"Ingredient2"
 
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="HotbarSlot3" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_ytyno")
-stretch_mode = 3
+key_toggle = &"Ingredient3"
 
-[node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="HotbarSlot4" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_ytyno")
-stretch_mode = 3
+key_toggle = &"Ingredient4"

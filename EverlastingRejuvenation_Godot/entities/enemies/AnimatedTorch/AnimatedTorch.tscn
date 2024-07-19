@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://6kojr136venq"]
+
+[ext_resource type="Texture2D" uid="uid://c6lcyn5jyw4rd" path="res://entities/enemies/AnimatedTorch/AnimatedTorch-Sheet.png" id="1_1by6e"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="2_1o2go"]
+[ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="3_jmbar"]
+[ext_resource type="Script" path="res://entities/enemies/AnimatedTorch/AnimatedTorchIdle.gd" id="4_gmmt8"]
+[ext_resource type="Script" path="res://entities/enemies/AnimatedTorch/AnimatedTorchExtinguished.gd" id="5_e3vdd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb4ac"]
+atlas = ExtResource("1_1by6e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_352y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb4ac")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b7x60"]
+radius = 2.0
+height = 12.0
+
+[node name="AnimatedTorch" type="CharacterBody2D"]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+sprite_frames = SubResource("SpriteFrames_352y7")
+offset = Vector2(0.5, -16)
+
+[node name="LightSource" parent="." instance=ExtResource("2_1o2go")]
+position = Vector2(0, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_b7x60")
+
+[node name="AnimatedTorchStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_jmbar")
+current_state = NodePath("AnimatedTorchIdle")
+
+[node name="AnimatedTorchIdle" type="Node" parent="AnimatedTorchStateMachine"]
+script = ExtResource("4_gmmt8")
+
+[node name="AnimatedTorchExtinguished" type="Node" parent="AnimatedTorchStateMachine"]
+script = ExtResource("5_e3vdd")

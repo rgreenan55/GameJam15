@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cniagys5rwat6"]
+
+[ext_resource type="PackedScene" uid="uid://cmjst4b06xjbi" path="res://ui/menus/hud/HotbarSlot.tscn" id="1_tp6w6"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Margin" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="Hotbar" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HotbarSlot" parent="Margin/Hotbar" instance=ExtResource("1_tp6w6")]
+layout_mode = 2
+
+[node name="HotbarSlot2" parent="Margin/Hotbar" instance=ExtResource("1_tp6w6")]
+layout_mode = 2
+
+[node name="HotbarSlot3" parent="Margin/Hotbar" instance=ExtResource("1_tp6w6")]
+layout_mode = 2
+
+[node name="HotbarSlot4" parent="Margin/Hotbar" instance=ExtResource("1_tp6w6")]
+layout_mode = 2

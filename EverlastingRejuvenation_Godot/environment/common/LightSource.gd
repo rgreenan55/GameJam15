@@ -9,5 +9,5 @@ func _process(delta: float) -> void:
 	energy = 1 + sampled_noise;
 
 func extinguish() -> void:
-	get_node("../AnimatedSprite2D").play("extinguish")
+	get_node("../AnimatedSprite").play("extinguish")
 	queue_free();

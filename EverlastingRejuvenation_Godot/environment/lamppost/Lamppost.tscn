@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://pk32boqhd2py"]
+[gd_scene load_steps=12 format=3 uid="uid://pk32boqhd2py"]
 
 [ext_resource type="Texture2D" uid="uid://cq2vlbxqyn1lm" path="res://environment/lamppost/Lamppost-Sheet.png" id="1_r2d7l"]
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="2_23p1m"]
@@ -58,23 +58,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3efrh"]
+radius = 3.0
+height = 14.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_swcy5"]
 
-[node name="Lamppost" type="Node2D"]
+[node name="Lamppost" type="StaticBody2D"]
+y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_td1yf")
 animation = &"extinguish"
 autoplay = "default"
+offset = Vector2(-0.5, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3efrh")
 
 [node name="LightSource" parent="." instance=ExtResource("2_23p1m")]
-position = Vector2(0.5, -25)
+position = Vector2(0, -38)
 
 [node name="LightHitbox" type="Area2D" parent="LightSource" groups=["Extinguishable"]]
-position = Vector2(-0.5, 25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightSource/LightHitbox"]
-position = Vector2(0.5, -30)
 shape = SubResource("CircleShape2D_swcy5")

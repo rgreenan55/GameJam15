@@ -27,7 +27,7 @@ radius = 80.0
 [node name="LightSource" type="PointLight2D"]
 color = Color(0.866667, 0.345098, 0.156863, 1)
 shadow_enabled = true
-shadow_color = Color(0.12549, 0.101961, 0.160784, 1)
+shadow_color = Color(0, 0, 0, 1)
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_s377l")
 script = ExtResource("1_raovu")

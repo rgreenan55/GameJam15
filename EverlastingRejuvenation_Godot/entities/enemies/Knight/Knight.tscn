@@ -21,10 +21,10 @@ size = Vector2(16, 16)
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
 texture = SubResource("GradientTexture2D_kvg82")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+[node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
