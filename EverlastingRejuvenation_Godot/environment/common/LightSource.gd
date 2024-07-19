@@ -7,3 +7,7 @@ func _process(delta: float) -> void:
 	time += delta;
 	var sampled_noise = abs(noise.noise.get_noise_1d(time));
 	energy = 1 + sampled_noise;
+
+func extinguish() -> void:
+	get_node("../AnimatedSprite2D").play("extinguish")
+	queue_free();

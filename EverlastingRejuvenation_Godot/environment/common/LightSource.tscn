@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6vtgfltf3a4k"]
 
-[ext_resource type="Script" path="res://objects/common/LightSource.gd" id="1_raovu"]
+[ext_resource type="Script" path="res://environment/common/LightSource.gd" id="1_raovu"]
 
 [sub_resource type="Gradient" id="Gradient_inb8g"]
-offsets = PackedFloat32Array(0.369565, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.0993789, 0.204969, 1)
+colors = PackedColorArray(0.680451, 0.680451, 0.680451, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s377l"]
 gradient = SubResource("Gradient_inb8g")
@@ -33,7 +33,7 @@ texture = SubResource("GradientTexture2D_s377l")
 script = ExtResource("1_raovu")
 noise = SubResource("NoiseTexture2D_urwnh")
 
-[node name="Area2D" type="Area2D" parent="." groups=["LightSource"]]
+[node name="Area" type="Area2D" parent="." groups=["LightSource"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Collision" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CircleShape2D_2cyob")

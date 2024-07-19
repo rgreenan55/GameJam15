@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 		next_scene();
 
 func next_scene():
-	get_node("Level").remove_child(get_node("Level" + str(level_id)));
+	remove_child(get_node("Level" + str(level_id)));
 	level_id += 1;
 	load_scene();
 
@@ -21,6 +21,5 @@ func load_scene():
 	var level_node : Level = current_level.instantiate();
 
 	# Handle Level Instructions
-	get_node("UserInterface").visible = level_node.hud_active;
-	get_node("Level").add_child(level_node);
-	get_node("Level").move_child(level_node, 0);
+	get_node("HUD").visible = level_node.hud_active;
+	add_child(level_node);

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh0h1vcgv50ha"
-path="res://.godot/imported/WhiteCircle.png-992aba5c6c8b2dbc367792e389b3e0ac.ctex"
+uid="uid://cq2vlbxqyn1lm"
+path="res://.godot/imported/Lamppost-Sheet.png-a8e89b2695b7fe461a661b999d9fde1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/common/WhiteCircle.png"
-dest_files=["res://.godot/imported/WhiteCircle.png-992aba5c6c8b2dbc367792e389b3e0ac.ctex"]
+source_file="res://environment/lamppost/Lamppost-Sheet.png"
+dest_files=["res://.godot/imported/Lamppost-Sheet.png-a8e89b2695b7fe461a661b999d9fde1b.ctex"]
 
 [params]
 

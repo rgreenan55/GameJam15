@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxq8ityqefb8h"]
+[gd_scene load_steps=20 format=3 uid="uid://dxq8ityqefb8h"]
 
 [ext_resource type="Script" path="res://entities/player/scripts/Wizard.gd" id="1_ee4lp"]
 [ext_resource type="Texture2D" uid="uid://xi3t14gfl12t" path="res://entities/player/assets/WizardSpriteSheet.png" id="2_wvjok"]
-[ext_resource type="Script" path="res://gameplay/PotionHandler.gd" id="3_8fp7v"]
+[ext_resource type="Script" path="res://entities/player/scripts/PotionHandler.gd" id="3_8fp7v"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="3_u3o3x"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardIdleState.gd" id="4_gpqla"]
 [ext_resource type="PackedScene" uid="uid://ptgedtdlu4ej" path="res://entities/potions/Potion.tscn" id="4_ree82"]
@@ -64,7 +64,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_s42ku"]
 resource_name = "long_idle_loop"
-length = 2.8
+length = 3.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -73,10 +73,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.4, 2.8, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [63, 64, 65, 66, 67, 68, 69]
+"values": [63, 64, 65, 64, 65, 66, 67, 68, 69]
 }
 
 [sub_resource type="Animation" id="Animation_g7vpc"]
@@ -135,6 +135,10 @@ _data = {
 "walking": SubResource("Animation_yotiy")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2nvnu"]
+radius = 3.0
+height = 12.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xcs7"]
 radius = 1.0
 height = 8.0
@@ -144,6 +148,7 @@ radius = 150.0
 
 [node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
 z_index = 1
+position = Vector2(0, -8)
 collision_layer = 4
 collision_mask = 19
 script = ExtResource("1_ee4lp")
@@ -174,8 +179,15 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="LightDetector" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightDetector"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_2nvnu")
+
 [node name="WizardCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(-1, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2xcs7")
 
@@ -186,13 +198,13 @@ potion_scene = ExtResource("4_ree82")
 [node name="PotionThrowArea" type="Area2D" parent="PotionHandler"]
 
 [node name="PotionThrowRange" type="CollisionShape2D" parent="PotionHandler/PotionThrowArea"]
+visible = false
 shape = SubResource("CircleShape2D_mrv5a")
 
 [node name="ThrowLine" type="Line2D" parent="PotionHandler"]
 visible = false
-width = 1.0
-
-[node name="Potions" type="Node2D" parent="PotionHandler"]
+width = 0.5
+default_color = Color(1, 1, 1, 0.392157)
 
 [node name="WizardStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_u3o3x")
@@ -214,6 +226,7 @@ animation_name = "walking"
 script = ExtResource("6_koe07")
 animation_name = "dying"
 
+[connection signal="area_entered" from="LightDetector" to="." method="_on_light_detector_area_entered"]
 [connection signal="input_event" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_input_event"]
 [connection signal="mouse_entered" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]
 [connection signal="mouse_exited" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_exited"]

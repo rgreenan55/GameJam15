@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ptgedtdlu4ej"]
+[gd_scene load_steps=12 format=3 uid="uid://ptgedtdlu4ej"]
 
 [ext_resource type="Script" path="res://entities/potions/Potion.gd" id="1_na65a"]
+[ext_resource type="PackedScene" uid="uid://b04ov35px5o5v" path="res://entities/potions/potion_effects/WaterPotion.tscn" id="2_7nyh8"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_ga8sw"]
 [ext_resource type="Script" path="res://entities/potions/PotionThrownState.gd" id="3_oebi6"]
 [ext_resource type="Script" path="res://entities/potions/PotionLandedState.gd" id="4_s0nfk"]
@@ -34,6 +35,7 @@ radius = 11.0
 collision_layer = 8
 collision_mask = 18
 script = ExtResource("1_na65a")
+effect_scene = ExtResource("2_7nyh8")
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -64,7 +66,6 @@ script = ExtResource("4_s0nfk")
 potion_area_of_effect = ExtResource("5_5281m")
 
 [node name="Timer" type="Timer" parent="PotionStateMachine/PotionLandedState"]
-wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="PotionStateMachine/PotionLandedState/Timer" to="." method="queue_free"]

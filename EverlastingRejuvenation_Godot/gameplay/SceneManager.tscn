@@ -6,8 +6,4 @@
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_v7pjo")
 
-[node name="Level" type="Node2D" parent="."]
-
-[node name="UserInterface" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="UserInterface" instance=ExtResource("3_s22ck")]
+[node name="HUD" parent="." instance=ExtResource("3_s22ck")]
