@@ -89,8 +89,9 @@ Ingredient4={
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Potions"
 2d_physics/layer_5="Enemies"
-2d_physics/layer_6="Light"
-2d_physics/layer_7="LightDetector"
+2d_physics/layer_6="Lights"
+2d_physics/layer_7="LightDetectors"
+2d_physics/layer_8="Potions"
 
 [rendering]
 

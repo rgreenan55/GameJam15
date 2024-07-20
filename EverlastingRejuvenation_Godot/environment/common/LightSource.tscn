@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://environment/common/LightSource.gd" id="1_raovu"]
 
 [sub_resource type="Gradient" id="Gradient_inb8g"]
-offsets = PackedFloat32Array(0.0993789, 0.204969, 1)
-colors = PackedColorArray(0.680451, 0.680451, 0.680451, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.487578, 0.652174, 0.881988)
+colors = PackedColorArray(1, 1, 1, 1, 0.630058, 0.630058, 0.630058, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s377l"]
 gradient = SubResource("Gradient_inb8g")
@@ -37,19 +37,21 @@ noise = SubResource("NoiseTexture2D_urwnh")
 
 [node name="AreaOfEffect" type="Area2D" parent="." groups=["LightSource"]]
 collision_layer = 32
-collision_mask = 4
+collision_mask = 64
 
 [node name="AreaOfCollision" type="CollisionShape2D" parent="AreaOfEffect"]
 shape = SubResource("CircleShape2D_2cyob")
 
 [node name="LightHitbox" type="Area2D" parent="." groups=["Extinguishable"]]
+collision_layer = 32
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightHitbox"]
 shape = SubResource("CircleShape2D_1lhm6")
 
 [node name="Raycast" type="RayCast2D" parent="."]
 target_position = Vector2(80, 0)
-collision_mask = 23
+collision_mask = 83
 
 [connection signal="area_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_area_entered"]
 [connection signal="body_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_body_entered"]

@@ -3,7 +3,7 @@ extends PointLight2D
 
 @export var noise : NoiseTexture2D;
 @export var is_extinguishable : bool = true;
-var player_light_detector : CharacterBody2D;
+var player_light_detector : CollisionShape2D;
 var time : float = 0;
 
 func _process(delta: float) -> void:
@@ -18,8 +18,8 @@ func process_raycast() -> void:
 	# Check if Colliding with Player - Need to Improve this
 	if (raycast1.is_colliding()):
 		var collider = raycast1.get_collider();
-		if (collider.is_in_group("Player")):
-			collider.hit_by_light();
+		if (collider.is_in_group("PlayerLightDetector")):
+			collider.get_parent().hit_by_light();
 
 func randomize_light(delta: float) -> void:
 	time += delta;
@@ -38,5 +38,6 @@ func extinguish() -> void:
 		get_parent().extinguish();
 
 func _on_area_of_effect_body_entered(body: Node2D) -> void:
-	if (body.is_in_group("Player")):
-		player_light_detector = body
+	print(body);
+	if (body.is_in_group("PlayerLightDetector")):
+		player_light_detector = body.get_node("DetectorShape")

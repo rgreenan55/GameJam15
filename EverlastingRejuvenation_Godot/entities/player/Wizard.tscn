@@ -142,7 +142,7 @@ height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bmts5"]
 radius = 1.0
-height = 10.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mrv5a"]
 radius = 150.0
@@ -182,13 +182,14 @@ libraries = {
 }
 
 [node name="WizardCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+z_index = 1
+position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2xcs7")
 
-[node name="LightDetector" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 32
+[node name="LightDetector" type="CharacterBody2D" parent="." groups=["PlayerLightDetector"]]
+collision_layer = 68
+collision_mask = 0
 
 [node name="DetectorShape" type="CollisionShape2D" parent="LightDetector"]
 position = Vector2(0, -7)

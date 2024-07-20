@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/potions/potion_effects/scripts/WaterPotion.gd" id="1_3lsj7"]
 
-[node name="Node" type="Node"]
+[node name="WaterPotion" type="Node"]
 script = ExtResource("1_3lsj7")
 group_check = "Extinguishable"
 color = Color(0.219608, 0.447059, 1, 1)
