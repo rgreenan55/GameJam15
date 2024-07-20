@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="1_m7m6f"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_32vh7"]
-[ext_resource type="Script" path="res://entities/enemies/Knight/IdleKnightState.gd" id="3_acefs"]
-[ext_resource type="Script" path="res://entities/enemies/Knight/AlertKnightState.gd" id="4_3qiir"]
+[ext_resource type="Script" path="res://entities/enemies/Knight/scripts/IdleKnightState.gd" id="3_acefs"]
+[ext_resource type="Script" path="res://entities/enemies/Knight/scripts/AlertKnightState.gd" id="4_3qiir"]
 
 [sub_resource type="Gradient" id="Gradient_dqrpm"]
 offsets = PackedFloat32Array(0.493789)
@@ -17,20 +17,24 @@ height = 16
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8eytr"]
 size = Vector2(16, 16)
 
-[node name="Knight" type="CharacterBody2D"]
+[node name="Knight" type="CharacterBody2D" groups=["Enemy", "Polymorphable"]]
 
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
 texture = SubResource("GradientTexture2D_kvg82")
+offset = Vector2(0, -8)
 
 [node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_8eytr")
 
 [node name="LightSource" parent="." instance=ExtResource("1_m7m6f")]
+position = Vector2(0, -8)
+is_extinguishable = false
 
 [node name="KnightStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_32vh7")

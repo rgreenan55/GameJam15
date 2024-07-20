@@ -1,5 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://pk32boqhd2py"]
 
+[ext_resource type="Script" path="res://environment/lamppost/Lamppost.gd" id="1_bcocc"]
 [ext_resource type="Texture2D" uid="uid://cq2vlbxqyn1lm" path="res://environment/lamppost/Lamppost-Sheet.png" id="1_r2d7l"]
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="2_23p1m"]
 
@@ -62,10 +63,9 @@ animations = [{
 radius = 3.0
 height = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_swcy5"]
-
 [node name="Lamppost" type="StaticBody2D"]
 y_sort_enabled = true
+script = ExtResource("1_bcocc")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -82,8 +82,3 @@ shape = SubResource("CapsuleShape2D_3efrh")
 
 [node name="LightSource" parent="." instance=ExtResource("2_23p1m")]
 position = Vector2(0, -38)
-
-[node name="LightHitbox" type="Area2D" parent="LightSource" groups=["Extinguishable"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightSource/LightHitbox"]
-shape = SubResource("CircleShape2D_swcy5")

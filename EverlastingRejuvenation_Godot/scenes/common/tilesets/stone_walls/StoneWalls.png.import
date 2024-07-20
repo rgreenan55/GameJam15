@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsc30g63urbr5"
-path="res://.godot/imported/GrassTileset.png-d1164ebedc9de506b4acec82f37edf47.ctex"
+uid="uid://cj6uodchp31pj"
+path="res://.godot/imported/StoneWalls.png-fdaf4f761cfc93dc15601e7f9ab4cdff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/common/tilesets/grass/GrassTileset.png"
-dest_files=["res://.godot/imported/GrassTileset.png-d1164ebedc9de506b4acec82f37edf47.ctex"]
+source_file="res://scenes/common/tilesets/stone_walls/StoneWalls.png"
+dest_files=["res://.godot/imported/StoneWalls.png-fdaf4f761cfc93dc15601e7f9ab4cdff.ctex"]
 
 [params]
 

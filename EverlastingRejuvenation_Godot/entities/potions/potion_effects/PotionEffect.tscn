@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7buexldejcy5"]
 
-[ext_resource type="Script" path="res://entities/potions/potion_effects/PotionEffect.gd" id="1_x5e6i"]
+[ext_resource type="Script" path="res://entities/potions/potion_effects/scripts/PotionEffect.gd" id="1_x5e6i"]
 
 [node name="PotionEffect" type="Node"]
 script = ExtResource("1_x5e6i")

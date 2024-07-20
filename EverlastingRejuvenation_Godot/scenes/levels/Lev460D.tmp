@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://by631va8liify"]
+[gd_scene load_steps=7 format=3 uid="uid://by631va8liify"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_v5ocm"]
 [ext_resource type="TileSet" uid="uid://cs8xfp40jcylj" path="res://scenes/common/tilesets/grass/Grass.tres" id="2_vsyls"]
@@ -6,7 +6,6 @@
 [ext_resource type="TileSet" uid="uid://bfcps13pl15fh" path="res://scenes/common/tilesets/stone_walls/StoneWalls.tres" id="3_qlh2u"]
 [ext_resource type="PackedScene" uid="uid://pk32boqhd2py" path="res://environment/lamppost/Lamppost.tscn" id="4_3duum"]
 [ext_resource type="PackedScene" uid="uid://6kojr136venq" path="res://entities/enemies/AnimatedTorch/AnimatedTorch.tscn" id="5_7cgfe"]
-[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="7_andgk"]
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -47,6 +46,3 @@ position = Vector2(445, 103)
 position = Vector2(360, 262)
 
 [node name="Potions" type="Node2D" parent="Entities"]
-
-[node name="LightSource" parent="." instance=ExtResource("7_andgk")]
-position = Vector2(90, 281)

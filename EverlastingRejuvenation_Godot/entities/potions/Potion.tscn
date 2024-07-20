@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://ptgedtdlu4ej"]
 
-[ext_resource type="Script" path="res://entities/potions/Potion.gd" id="1_na65a"]
+[ext_resource type="Script" path="res://entities/potions/scripts/Potion.gd" id="1_na65a"]
 [ext_resource type="PackedScene" uid="uid://b04ov35px5o5v" path="res://entities/potions/potion_effects/WaterPotion.tscn" id="2_7nyh8"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_ga8sw"]
-[ext_resource type="Script" path="res://entities/potions/PotionThrownState.gd" id="3_oebi6"]
-[ext_resource type="Script" path="res://entities/potions/PotionLandedState.gd" id="4_s0nfk"]
+[ext_resource type="Script" path="res://entities/potions/scripts/PotionThrownState.gd" id="3_oebi6"]
+[ext_resource type="Script" path="res://entities/potions/scripts/PotionLandedState.gd" id="4_s0nfk"]
 [ext_resource type="PackedScene" uid="uid://bah5xda72mqtn" path="res://entities/potions/PotionAreaOfEffect.tscn" id="5_5281m"]
 
 [sub_resource type="Gradient" id="Gradient_pkdkn"]

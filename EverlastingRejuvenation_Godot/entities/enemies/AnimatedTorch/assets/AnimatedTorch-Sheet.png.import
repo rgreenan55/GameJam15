@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6lcyn5jyw4rd"
-path="res://.godot/imported/AnimatedTorch-Sheet.png-eb1191a7fd4c4569d450deba8ef07e90.ctex"
+path="res://.godot/imported/AnimatedTorch-Sheet.png-a6dcfa3b201fffcaa6932a17bc661c00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/AnimatedTorch/AnimatedTorch-Sheet.png"
-dest_files=["res://.godot/imported/AnimatedTorch-Sheet.png-eb1191a7fd4c4569d450deba8ef07e90.ctex"]
+source_file="res://entities/enemies/AnimatedTorch/assets/AnimatedTorch-Sheet.png"
+dest_files=["res://.godot/imported/AnimatedTorch-Sheet.png-a6dcfa3b201fffcaa6932a17bc661c00.ctex"]
 
 [params]
 

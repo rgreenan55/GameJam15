@@ -138,14 +138,14 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xcs7"]
 radius = 1.0
-height = 8.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2nvnu"]
-radius = 3.0
-height = 12.0
+height = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mrv5a"]
 radius = 150.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bmts5"]
+radius = 1.0
+height = 10.0
 
 [node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
 y_sort_enabled = true
@@ -181,15 +181,9 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="WizardCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1)
+position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2xcs7")
-
-[node name="LightDetector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightDetector"]
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_2nvnu")
 
 [node name="PotionHandler" type="Node2D" parent="."]
 script = ExtResource("3_8fp7v")
@@ -201,7 +195,6 @@ potion_scene = ExtResource("4_ree82")
 shape = SubResource("CircleShape2D_mrv5a")
 
 [node name="ThrowLine" type="Line2D" parent="PotionHandler"]
-visible = false
 width = 0.5
 default_color = Color(1, 1, 1, 0.392157)
 
@@ -231,7 +224,12 @@ animation_name = "walking"
 script = ExtResource("6_koe07")
 animation_name = "dying"
 
-[connection signal="area_entered" from="LightDetector" to="." method="_on_light_detector_area_entered"]
+[node name="LightDetector" type="Area2D" parent="."]
+
+[node name="DetectorShape" type="CollisionShape2D" parent="LightDetector"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_bmts5")
+
 [connection signal="input_event" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_input_event"]
 [connection signal="mouse_entered" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]
 [connection signal="mouse_exited" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_exited"]

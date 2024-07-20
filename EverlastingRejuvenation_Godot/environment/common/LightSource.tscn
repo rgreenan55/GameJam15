@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6vtgfltf3a4k"]
+[gd_scene load_steps=8 format=3 uid="uid://c6vtgfltf3a4k"]
 
 [ext_resource type="Script" path="res://environment/common/LightSource.gd" id="1_raovu"]
 
@@ -24,6 +24,8 @@ noise = SubResource("FastNoiseLite_yk8up")
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cyob"]
 radius = 80.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lhm6"]
+
 [node name="LightSource" type="PointLight2D"]
 color = Color(0.866667, 0.345098, 0.156863, 1)
 shadow_enabled = true
@@ -33,7 +35,21 @@ texture = SubResource("GradientTexture2D_s377l")
 script = ExtResource("1_raovu")
 noise = SubResource("NoiseTexture2D_urwnh")
 
-[node name="Area" type="Area2D" parent="." groups=["LightSource"]]
+[node name="AreaOfEffect" type="Area2D" parent="." groups=["LightSource"]]
+collision_layer = 32
+collision_mask = 4
 
-[node name="Collision" type="CollisionShape2D" parent="Area"]
+[node name="AreaOfCollision" type="CollisionShape2D" parent="AreaOfEffect"]
 shape = SubResource("CircleShape2D_2cyob")
+
+[node name="LightHitbox" type="Area2D" parent="." groups=["Extinguishable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightHitbox"]
+shape = SubResource("CircleShape2D_1lhm6")
+
+[node name="Raycast" type="RayCast2D" parent="."]
+target_position = Vector2(80, 0)
+collision_mask = 23
+
+[connection signal="area_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_area_entered"]
+[connection signal="body_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_body_entered"]
