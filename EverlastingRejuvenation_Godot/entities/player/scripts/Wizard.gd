@@ -1,6 +1,7 @@
 class_name Wizard extends CharacterBody2D
 
-signal throw_potion(start : Vector2, end : Vector2)
+signal player_death();
+signal throw_potion(start : Vector2, end : Vector2);
 
 @onready var state_machine : StateMachine = $WizardStateMachine;
 

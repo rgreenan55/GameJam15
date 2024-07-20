@@ -16,10 +16,19 @@ func next_scene():
 	level_id += 1;
 	load_scene();
 
-func load_scene():
+func load_scene() -> void:
 	current_level = load("res://scenes/levels/Level" + str(level_id) + ".tscn");
 	var level_node : Level = current_level.instantiate();
+	level_node.connect("game_over", game_over);
 
 	# Handle Level Instructions
 	get_node("HUD").visible = level_node.hud_active;
 	add_child(level_node);
+
+func _on_game_over_menu_retry() -> void:
+	remove_child(get_node("Level" + str(level_id)));
+	load_scene();
+
+func game_over() -> void:
+	get_node("GameOverMenu").visible = true;
+	get_tree().paused = true;

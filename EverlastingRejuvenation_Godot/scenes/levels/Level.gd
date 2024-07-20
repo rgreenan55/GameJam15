@@ -1,5 +1,7 @@
 class_name Level extends Node2D
 
+signal game_over;
+
 @export var spawn_position : Vector2;
 @export var hud_active : bool = true;
 
@@ -10,6 +12,7 @@ func _ready() -> void:
 	var player = player_scene.instantiate();
 	player.position = spawn_position;
 	player.connect("throw_potion", spawn_potion);
+	player.connect("player_death", emit_game_over);
 	get_node("Entities/Player").add_child(player);
 
 func spawn_potion(start : Vector2, end : Vector2):
@@ -19,3 +22,6 @@ func spawn_potion(start : Vector2, end : Vector2):
 	potion.middle_position.y -= 100;
 	potion.end_position = end;
 	add_child(potion);
+
+func emit_game_over() -> void:
+	emit_signal("game_over");
