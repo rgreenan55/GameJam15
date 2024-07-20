@@ -2,6 +2,9 @@ extends State
 
 var progress : float = 0;
 
+func Enter() -> void:
+	parent.position = parent.start_position;
+
 # Perform at Process Calls
 func Update(delta: float) -> void:
 	super(delta);

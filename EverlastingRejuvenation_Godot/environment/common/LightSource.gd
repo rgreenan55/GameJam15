@@ -15,10 +15,9 @@ func process_raycast() -> void:
 	# Look At Player
 	var raycast1 : RayCast2D = get_node("Raycast");
 	raycast1.look_at(player_light_detector.global_position);
-	# Check if Colliding with Player
+	# Check if Colliding with Player - Need to Improve this
 	if (raycast1.is_colliding()):
 		var collider = raycast1.get_collider();
-		print(collider);
 		if (collider.is_in_group("Player")):
 			collider.hit_by_light();
 

@@ -39,7 +39,8 @@ effect_scene = ExtResource("2_7nyh8")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+z_index = 10
 scale = Vector2(0.125, 0.125)
 texture = SubResource("GradientTexture2D_onwrr")
 region_rect = Rect2(0, 0, 48, 50)
