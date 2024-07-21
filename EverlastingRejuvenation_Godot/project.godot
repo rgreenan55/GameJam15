@@ -25,6 +25,18 @@ window/stretch/mode="canvas_items"
 
 naming/scene_name_casing=1
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://entities/": "purple",
+"res://entities/player/scripts/": "purple",
+"res://environment/": "yellow",
+"res://gameplay/": "gray",
+"res://scenes/": "blue",
+"res://ui/": "green"
+}
+
 [input]
 
 NextLevel={
@@ -86,12 +98,14 @@ Ingredient4={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="Environment"
-2d_physics/layer_3="Player"
-2d_physics/layer_4="Potions"
-2d_physics/layer_5="Enemies"
-2d_physics/layer_6="Lights"
-2d_physics/layer_7="LightDetectors"
+2d_physics/layer_3="TallThings"
+2d_physics/layer_6="Player"
+2d_physics/layer_7="Enemies"
 2d_physics/layer_8="Potions"
+2d_physics/layer_11="LightEmitters"
+2d_physics/layer_12="LightDetectors"
+2d_physics/layer_13="LightBlocker"
+2d_physics/layer_16="UserInterface"
 
 [rendering]
 

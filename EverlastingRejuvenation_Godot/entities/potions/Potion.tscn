@@ -32,8 +32,8 @@ _data = {
 radius = 11.0
 
 [node name="Potion" type="CharacterBody2D"]
-collision_layer = 8
-collision_mask = 18
+collision_layer = 128
+collision_mask = 0
 script = ExtResource("1_na65a")
 effect_scene = ExtResource("2_7nyh8")
 

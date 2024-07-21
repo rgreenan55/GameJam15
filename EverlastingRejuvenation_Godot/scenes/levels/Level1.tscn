@@ -36,13 +36,13 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Lamppost" parent="Entities/Player" instance=ExtResource("4_3duum")]
-position = Vector2(197, 200)
+position = Vector2(241, 178)
 
 [node name="Enemies" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
 [node name="Knight" parent="Entities/Enemies" instance=ExtResource("3_hh8nk")]
-position = Vector2(445, 103)
+position = Vector2(452, 108)
 
 [node name="AnimatedTorch" parent="Entities/Enemies" instance=ExtResource("5_7cgfe")]
 position = Vector2(373, 264)

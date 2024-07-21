@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://pk32boqhd2py"]
+[gd_scene load_steps=14 format=3 uid="uid://pk32boqhd2py"]
 
 [ext_resource type="Script" path="res://environment/lamppost/Lamppost.gd" id="1_bcocc"]
 [ext_resource type="Texture2D" uid="uid://cq2vlbxqyn1lm" path="res://environment/lamppost/Lamppost-Sheet.png" id="1_r2d7l"]
@@ -59,6 +59,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_qgbl4"]
+offsets = PackedFloat32Array(0, 0.34472)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gi12g"]
+gradient = SubResource("Gradient_qgbl4")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3efrh"]
 radius = 3.0
 height = 14.0
@@ -75,12 +86,17 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_td1yf")
 animation = &"extinguish"
 autoplay = "default"
-offset = Vector2(-0.5, -16)
+offset = Vector2(-0.5, -15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite"]
+z_index = -1
+texture = SubResource("GradientTexture2D_gi12g")
+offset = Vector2(0, -2)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3efrh")
 
 [node name="LightSource" parent="." instance=ExtResource("2_23p1m")]
-position = Vector2(0, -38)
+position = Vector2(0, -5)

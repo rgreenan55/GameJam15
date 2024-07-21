@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxq8ityqefb8h"]
+[gd_scene load_steps=20 format=3 uid="uid://dxq8ityqefb8h"]
 
 [ext_resource type="Script" path="res://entities/player/scripts/Wizard.gd" id="1_ee4lp"]
 [ext_resource type="Texture2D" uid="uid://xi3t14gfl12t" path="res://entities/player/assets/WizardSpriteSheet.png" id="2_wvjok"]
@@ -9,6 +9,10 @@
 [ext_resource type="Script" path="res://entities/player/scripts/ThrowRangeIndicator.gd" id="5_6rcqf"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardWalkingState.gd" id="5_nupd3"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardDyingState.gd" id="6_koe07"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xcs7"]
+radius = 1.0
+height = 6.0
 
 [sub_resource type="Curve" id="Curve_e31wg"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -136,22 +140,20 @@ _data = {
 "walking": SubResource("Animation_yotiy")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xcs7"]
-radius = 1.0
-height = 6.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bmts5"]
-radius = 1.0
-height = 12.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_mrv5a"]
 radius = 150.0
 
 [node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
 y_sort_enabled = true
-collision_layer = 4
-collision_mask = 19
+collision_layer = 32
+collision_mask = 1111
 script = ExtResource("1_ee4lp")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2xcs7")
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -181,26 +183,12 @@ libraries = {
 "": SubResource("AnimationLibrary_mkimf")
 }
 
-[node name="WizardCollision" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(0, -1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_2xcs7")
-
-[node name="LightDetector" type="CharacterBody2D" parent="." groups=["PlayerLightDetector"]]
-collision_layer = 68
-collision_mask = 0
-
-[node name="DetectorShape" type="CollisionShape2D" parent="LightDetector"]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_bmts5")
-
 [node name="PotionHandler" type="Node2D" parent="."]
 script = ExtResource("3_8fp7v")
 potion_scene = ExtResource("4_ree82")
 
 [node name="PotionThrowArea" type="Area2D" parent="PotionHandler"]
-collision_layer = 4
+collision_layer = 32768
 collision_mask = 0
 
 [node name="PotionThrowRange" type="CollisionShape2D" parent="PotionHandler/PotionThrowArea"]
