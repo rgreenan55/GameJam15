@@ -6,7 +6,14 @@ signal game_over;
 @export var hud_active : bool = true;
 
 @onready var player_scene : PackedScene = load("res://entities/player/Wizard.tscn");
-@onready var potion_scene : PackedScene = load("res://entities/potions/Potion.tscn")
+@onready var potion_scene : PackedScene = load("res://entities/potions/Potion.tscn");
+
+var potion_types : Array[PackedScene] = [
+	load("res://entities/potions/potion_types/WaterPotion.tscn"),
+	load("res://entities/potions/potion_types/ShadowPotion.tscn"),
+	load("res://entities/potions/potion_types/PolymorphPotion.tscn"),
+];
+var i : int = 0;
 
 func _ready() -> void:
 	var player = player_scene.instantiate();
@@ -17,6 +24,11 @@ func _ready() -> void:
 
 func spawn_potion(start : Vector2, end : Vector2):
 	var potion : Potion = potion_scene.instantiate();
+
+	# Remove This
+	potion.type_scene = potion_types[i];
+	i = (i + 1) % 3
+
 	potion.start_position = start;
 	potion.middle_position = start.lerp(end, 0.5);
 	potion.middle_position.y -= 100;

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b04ov35px5o5v"]
+
+[ext_resource type="Script" path="res://entities/potions/potion_types/scripts/WaterPotion.gd" id="1_d8e0c"]
+
+[node name="WaterPotion" type="Node"]
+script = ExtResource("1_d8e0c")
+group_check = "Extinguishable"
+primary_color = Color(0, 0.478431, 1, 1)
+secondary_color = Color(0, 0.698039, 1, 1)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ptgedtdlu4ej"]
+[gd_scene load_steps=11 format=3 uid="uid://ptgedtdlu4ej"]
 
 [ext_resource type="Script" path="res://entities/potions/scripts/Potion.gd" id="1_na65a"]
-[ext_resource type="PackedScene" uid="uid://b04ov35px5o5v" path="res://entities/potions/potion_effects/WaterPotion.tscn" id="2_7nyh8"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_ga8sw"]
 [ext_resource type="Script" path="res://entities/potions/scripts/PotionThrownState.gd" id="3_oebi6"]
 [ext_resource type="Script" path="res://entities/potions/scripts/PotionLandedState.gd" id="4_s0nfk"]
@@ -10,7 +9,7 @@
 [sub_resource type="Gradient" id="Gradient_pkdkn"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.540373, 1)
-colors = PackedColorArray(1, 0.560784, 0.596078, 1, 1, 0.560784, 0.596078, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_onwrr"]
 gradient = SubResource("Gradient_pkdkn")
@@ -35,7 +34,6 @@ radius = 11.0
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("1_na65a")
-effect_scene = ExtResource("2_7nyh8")
 
 [node name="Visuals" type="Node2D" parent="."]
 

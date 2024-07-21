@@ -28,3 +28,18 @@ initial_velocity_max = 50.0
 angular_velocity_max = 360.0
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_puudr")
+
+[node name="Particles2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angular_velocity_max = 360.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_puudr")

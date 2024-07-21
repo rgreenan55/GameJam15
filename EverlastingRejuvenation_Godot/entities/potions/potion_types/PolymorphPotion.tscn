@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5lq2rwe8ptjk"]
+
+[ext_resource type="Script" path="res://entities/potions/potion_types/scripts/PolymorphPotion.gd" id="1_kc6it"]
+
+[node name="PolymorphPotion" type="Node"]
+script = ExtResource("1_kc6it")
+group_check = "Polymorphable"
+primary_color = Color(1, 0.643137, 1, 1)
+secondary_color = Color(0, 1, 0.517647, 1)
