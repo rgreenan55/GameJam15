@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6vtgfltf3a4k"]
 
-[ext_resource type="Script" path="res://environment/common/LightSource.gd" id="1_raovu"]
+[ext_resource type="Script" path="res://environment/LightSource/LightSource.gd" id="1_raovu"]
 
 [sub_resource type="Gradient" id="Gradient_inb8g"]
 offsets = PackedFloat32Array(0.487578, 0.652174, 0.881988)
@@ -44,6 +44,7 @@ shape = SubResource("CircleShape2D_2cyob")
 debug_color = Color(0.917647, 0.74902, 0.360784, 0.0784314)
 
 [node name="LightHitbox" type="Area2D" parent="." groups=["Extinguishable"]]
+z_index = 1
 collision_layer = 1024
 collision_mask = 128
 

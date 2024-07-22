@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmjst4b06xjbi"]
 
-[ext_resource type="Script" path="res://ui/menus/hud/HotbarSlot.gd" id="1_c2wnu"]
-[ext_resource type="Texture2D" uid="uid://cni4qogacbaxw" path="res://ui/menus/hud/HudSlot.png" id="2_ut8m0"]
+[ext_resource type="Script" path="res://ui/menus/HUD/HotbarSlot.gd" id="1_c2wnu"]
+[ext_resource type="Texture2D" uid="uid://cni4qogacbaxw" path="res://ui/menus/HUD/HudSlot.png" id="2_ut8m0"]
 
 [node name="HotbarSlot" type="Button"]
 self_modulate = Color(1, 1, 1, 0)

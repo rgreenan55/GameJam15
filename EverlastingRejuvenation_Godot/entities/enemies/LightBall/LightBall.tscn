@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bp6yqq0ttmf76"]
+[gd_scene load_steps=15 format=3 uid="uid://bp6yqq0ttmf76"]
 
 [ext_resource type="Texture2D" uid="uid://i3h62ttn3sbh" path="res://entities/enemies/LightBall/assets/LightBall-Sheet.png" id="1_02y88"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="1_h3voe"]
 [ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBall.gd" id="1_j6c65"]
 [ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBallIdle.gd" id="3_0x5mx"]
-[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="3_5k5pl"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="3_5k5pl"]
 [ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBallAlert.gd" id="4_4cch1"]
 
 [sub_resource type="Animation" id="Animation_7rxin"]
@@ -81,6 +81,10 @@ _data = {
 "transition": SubResource("Animation_jbynf")
 }
 
+[sub_resource type="Curve" id="Curve_2ugw0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_14k6g"]
 radius = 2.0
 height = 8.0
@@ -97,6 +101,10 @@ script = ExtResource("1_j6c65")
 [node name="Visuals" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="LightSource" parent="Visuals" instance=ExtResource("3_5k5pl")]
+default_state = false
+is_extinguishable = false
+
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
@@ -111,20 +119,27 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="Particles" type="CPUParticles2D" parent="Visuals"]
+position = Vector2(0, -12)
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angular_velocity_max = 360.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_2ugw0")
+color = Color(1, 0.909804, 0.329412, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_14k6g")
-
-[node name="LightBallStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("1_h3voe")
-current_state = NodePath("LightBallIdle")
-
-[node name="LightBallIdle" type="Node" parent="LightBallStateMachine"]
-script = ExtResource("3_0x5mx")
-
-[node name="LightBallAlert" type="Node" parent="LightBallStateMachine"]
-script = ExtResource("4_4cch1")
 
 [node name="LineOfSight" type="Area2D" parent="."]
 collision_layer = 0
@@ -137,9 +152,15 @@ shape = SubResource("CircleShape2D_e0xvo")
 [node name="PatienceTimer" type="Timer" parent="LineOfSight"]
 wait_time = 4.0
 
-[node name="LightSource" parent="." instance=ExtResource("3_5k5pl")]
-default_state = false
-is_extinguishable = false
+[node name="LightBallStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_h3voe")
+current_state = NodePath("LightBallIdle")
+
+[node name="LightBallIdle" type="Node" parent="LightBallStateMachine"]
+script = ExtResource("3_0x5mx")
+
+[node name="LightBallAlert" type="Node" parent="LightBallStateMachine"]
+script = ExtResource("4_4cch1")
 
 [connection signal="body_entered" from="LineOfSight" to="." method="_on_line_of_sight_body_entered"]
 [connection signal="body_exited" from="LineOfSight" to="." method="_on_line_of_sight_body_exited"]

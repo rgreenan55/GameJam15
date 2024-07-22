@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6hi2iiwkcpkb"]
 
-[ext_resource type="Script" path="res://ui/menus/gameover/GameOverMenu.gd" id="1_f73ae"]
+[ext_resource type="Script" path="res://ui/menus/GameOver/GameOverMenu.gd" id="1_f73ae"]
 
 [node name="GameOverMenu" type="CanvasLayer"]
 process_mode = 3

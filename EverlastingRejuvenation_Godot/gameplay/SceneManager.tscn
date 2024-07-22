@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://btd23m8n5bmwq"]
 
 [ext_resource type="Script" path="res://gameplay/SceneManager.gd" id="1_v7pjo"]
-[ext_resource type="PackedScene" uid="uid://6hi2iiwkcpkb" path="res://ui/menus/gameover/GameOverMenu.tscn" id="3_0lubn"]
-[ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/hud/HUD.tscn" id="3_s22ck"]
+[ext_resource type="PackedScene" uid="uid://6hi2iiwkcpkb" path="res://ui/menus/GameOver/GameOverMenu.tscn" id="3_0lubn"]
+[ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/HUD/HUD.tscn" id="3_s22ck"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_v7pjo")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3v3o2mnfol3d"]
 
 [ext_resource type="Texture2D" uid="uid://cmc86ua4gay7n" path="res://entities/player/assets/Wizard.png" id="1_m67vu"]
-[ext_resource type="Script" path="res://ui/menus/mainmenu/MainMenu.gd" id="1_ufc0d"]
+[ext_resource type="Script" path="res://ui/menus/MainManu/MainMenu.gd" id="1_ufc0d"]
 [ext_resource type="PackedScene" uid="uid://btd23m8n5bmwq" path="res://gameplay/SceneManager.tscn" id="2_tmgjs"]
-[ext_resource type="Texture2D" uid="uid://dn5ka85pscx3e" path="res://ui/menus/mainmenu/MainMenu.png" id="3_lbr2h"]
+[ext_resource type="Texture2D" uid="uid://dn5ka85pscx3e" path="res://ui/menus/MainManu/MainMenu.png" id="3_lbr2h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3soq"]
 font_size = 24

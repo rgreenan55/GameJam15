@@ -4,7 +4,6 @@ class_name ShadowArea extends Area2D
 @export var draw_sprite : PackedScene;
 
 func _ready() -> void:
-	print(get_parent());
 	if (time_to_expire > 0):
 		get_node("Timer").start(time_to_expire);
 
@@ -63,7 +62,6 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
 		body.exited_shadow();
-
 
 func _on_child_entered_tree(node: Node) -> void:
 	if (node.get_class() == "CollisionShape2D"):

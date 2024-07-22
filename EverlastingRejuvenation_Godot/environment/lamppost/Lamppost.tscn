@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://pk32boqhd2py"]
 
-[ext_resource type="Script" path="res://environment/lamppost/Lamppost.gd" id="1_bcocc"]
-[ext_resource type="Texture2D" uid="uid://cq2vlbxqyn1lm" path="res://environment/lamppost/Lamppost-Sheet.png" id="1_r2d7l"]
-[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="2_23p1m"]
+[ext_resource type="Script" path="res://environment/LampPost/Lamppost.gd" id="1_bcocc"]
+[ext_resource type="Texture2D" uid="uid://cq2vlbxqyn1lm" path="res://environment/LampPost/Lamppost-Sheet.png" id="1_r2d7l"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="2_23p1m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu3ui"]
 atlas = ExtResource("1_r2d7l")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d376huekjp3c2"]
 
 [ext_resource type="Script" path="res://entities/enemies/Knight/Knight.gd" id="1_3xhfj"]
-[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="1_m7m6f"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="1_m7m6f"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_32vh7"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/IdleKnightState.gd" id="3_acefs"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/AlertKnightState.gd" id="4_3qiir"]
@@ -29,6 +29,10 @@ shape = SubResource("RectangleShape2D_8eytr")
 
 [node name="Visuals" type="Node2D" parent="."]
 
+[node name="LightSource" parent="Visuals" instance=ExtResource("1_m7m6f")]
+position = Vector2(0, -8)
+is_extinguishable = false
+
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
 texture = SubResource("GradientTexture2D_kvg82")
 offset = Vector2(0, -8)
@@ -36,9 +40,7 @@ offset = Vector2(0, -8)
 [node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../..")
 
-[node name="LightSource" parent="." instance=ExtResource("1_m7m6f")]
-position = Vector2(0, -8)
-is_extinguishable = false
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="KnightStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_32vh7")

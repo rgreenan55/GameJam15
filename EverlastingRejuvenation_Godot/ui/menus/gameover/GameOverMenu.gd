@@ -4,7 +4,7 @@ signal retry
 signal exit
 
 # Requires Static Loading to prevent Circular Dependency Errors
-var main_menu : PackedScene = load("res://ui/menus/mainmenu/MainMenu.tscn")
+var main_menu : PackedScene = load("res://ui/menus/MainManu/MainMenu.tscn")
 
 func _on_retry_pressed() -> void:
 	visible = false;

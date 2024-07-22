@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cni4qogacbaxw"
-path="res://.godot/imported/HudSlot.png-f7f1f04dc08a3cc7b15e2b8f4565cc0b.ctex"
+uid="uid://dbpbj1c1ab28x"
+path="res://.godot/imported/TallGrass.png-b67ee71d7be4adce9818c0f463696b83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/menus/HUD/HudSlot.png"
-dest_files=["res://.godot/imported/HudSlot.png-f7f1f04dc08a3cc7b15e2b8f4565cc0b.ctex"]
+source_file="res://environment/TallGrass/TallGrass.png"
+dest_files=["res://.godot/imported/TallGrass.png-b67ee71d7be4adce9818c0f463696b83.ctex"]
 
 [params]
 

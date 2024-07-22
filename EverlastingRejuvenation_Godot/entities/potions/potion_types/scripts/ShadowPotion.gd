@@ -1,6 +1,6 @@
 class_name ShadowPotion extends PotionType;
 
-var shadow_area_scene : PackedScene = load("res://environment/shadow_area/ShadowArea.tscn");
+var shadow_area_scene : PackedScene = load("res://environment/ShadowArea/ShadowArea.tscn");
 
 func perform_on_landing(parent : Node2D) -> void:
 	var shadow_area = shadow_area_scene.instantiate();

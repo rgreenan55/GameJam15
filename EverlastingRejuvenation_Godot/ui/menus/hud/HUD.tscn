@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cniagys5rwat6"]
 
-[ext_resource type="PackedScene" uid="uid://cmjst4b06xjbi" path="res://ui/menus/hud/HotbarSlot.tscn" id="1_tp6w6"]
+[ext_resource type="PackedScene" uid="uid://cmjst4b06xjbi" path="res://ui/menus/HUD/HotbarSlot.tscn" id="1_tp6w6"]
 
 [node name="HUD" type="CanvasLayer"]
 
