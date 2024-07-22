@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://caj5xclr1otl7"]
+
+[ext_resource type="Script" path="res://environment/shadow_area/ShadowArea.gd" id="1_gx4o4"]
+
+[node name="ShadowArea" type="Area2D" groups=["Shadow"]]
+collision_layer = 8192
+collision_mask = 32
+script = ExtResource("1_gx4o4")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = 100
+color = Color(0, 0, 0, 0.196078)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
