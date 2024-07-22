@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://by631va8liify"]
+[gd_scene load_steps=12 format=3 uid="uid://by631va8liify"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_v5ocm"]
 [ext_resource type="TileSet" uid="uid://cs8xfp40jcylj" path="res://scenes/common/tilesets/grass/Grass.tres" id="2_vsyls"]
@@ -13,6 +13,9 @@ size = Vector2(144, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5o5d7"]
 size = Vector2(56, 216)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwmqx"]
+radius = 24.0
 
 [sub_resource type="Curve2D" id="Curve2D_sqd8v"]
 
@@ -56,6 +59,13 @@ debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea2"]
 position = Vector2(572, 148)
 shape = SubResource("RectangleShape2D_5o5d7")
+debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
+
+[node name="ShadowArea3" parent="LevelDesign/ShadowAreas" instance=ExtResource("7_tubrl")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea3"]
+position = Vector2(96, 224)
+shape = SubResource("CircleShape2D_nwmqx")
 debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 
 [node name="Entities" type="Node2D" parent="."]
