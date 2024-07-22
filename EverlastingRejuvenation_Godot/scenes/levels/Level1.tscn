@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://by631va8liify"]
+[gd_scene load_steps=17 format=3 uid="uid://by631va8liify"]
 
 [ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_v5ocm"]
 [ext_resource type="TileSet" uid="uid://cs8xfp40jcylj" path="res://scenes/common/tilesets/grass/Grass.tres" id="2_vsyls"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://pk32boqhd2py" path="res://environment/lamppost/Lamppost.tscn" id="4_3duum"]
 [ext_resource type="PackedScene" uid="uid://6kojr136venq" path="res://entities/enemies/AnimatedTorch/AnimatedTorch.tscn" id="5_7cgfe"]
 [ext_resource type="PackedScene" uid="uid://caj5xclr1otl7" path="res://environment/shadow_area/ShadowArea.tscn" id="7_tubrl"]
+[ext_resource type="Shader" path="res://scenes/common/shaders/fog.gdshader" id="8_pueho"]
+[ext_resource type="PackedScene" uid="uid://bp6yqq0ttmf76" path="res://entities/enemies/LightBall/LightBall.tscn" id="9_qf2rk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6pgi"]
 size = Vector2(144, 136)
@@ -18,6 +20,22 @@ size = Vector2(56, 216)
 radius = 24.0
 
 [sub_resource type="Curve2D" id="Curve2D_sqd8v"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qjtvg"]
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_st6fv"]
+width = 640
+height = 360
+seamless = true
+seamless_blend_skirt = 0.75
+noise = SubResource("FastNoiseLite_qjtvg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkyp6"]
+shader = ExtResource("8_pueho")
+shader_parameter/density = 0.15
+shader_parameter/speed = Vector2(0.01, 0.005)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_st6fv")
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -95,3 +113,20 @@ y_sort_enabled = true
 
 [node name="Lamppost" parent="Environment" instance=ExtResource("4_3duum")]
 position = Vector2(243, 178)
+
+[node name="VisualAffects" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="VisualAffects"]
+layer = 50
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="VisualAffects/ParallaxBackground"]
+motion_mirroring = Vector2(640, 360)
+
+[node name="ColorRect" type="ColorRect" parent="VisualAffects/ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_xkyp6")
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="LightBall" parent="." instance=ExtResource("9_qf2rk")]
+position = Vector2(48, 208)

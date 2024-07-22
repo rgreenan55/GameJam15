@@ -9,6 +9,7 @@ signal throw_potion(start : Vector2, end : Vector2);
 
 # Shadow Timer Variables
 @export var out_of_shadow : bool = true;
+var number_of_shadows : int = 0;
 @onready var life_bar : ProgressBar = get_node("ShadowHandler/ShadowLifeBar");
 var life_bar_shown : bool = true;
 var max_time : float = 10;
@@ -28,11 +29,14 @@ func hit_by_light() -> void:
 	state_machine.on_child_transitioned("WizardDyingState");
 
 func exited_shadow() -> void:
-	if (!life_bar_shown):
-		fade_in_life_bar();
-	out_of_shadow = true;
+	number_of_shadows -= 1;
+	if (number_of_shadows == 0):
+		if (!life_bar_shown):
+			fade_in_life_bar();
+		out_of_shadow = true;
 
 func entered_shadow() -> void:
+	number_of_shadows += 1;
 	out_of_shadow = false;
 
 func fade_out_life_bar() -> void:

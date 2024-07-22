@@ -1,12 +1,15 @@
 class_name ShadowArea extends Area2D
 
+@export var time_to_expire : float = 0;
 @export var draw_sprite : PackedScene;
 
 func _ready() -> void:
-	draw_area();
-	draw_sprites();
+	print(get_parent());
+	if (time_to_expire > 0):
+		get_node("Timer").start(time_to_expire);
 
 func draw_area() -> void:
+	if (!has_node("CollisionShape2D")): return;
 	var collision_shape_node : CollisionShape2D = get_node("CollisionShape2D");
 	var polygon_nodes : PackedVector2Array;
 
@@ -26,7 +29,6 @@ func draw_area() -> void:
 
 	get_node("Polygon2D").polygon = polygon_nodes;
 	get_node("Polygon2D").position = collision_shape_node.position;
-
 
 # Determine Polygons for Shapes
 func get_rectangle_nodes(collision_shape : RectangleShape2D) -> PackedVector2Array:
@@ -61,3 +63,9 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if(body.is_in_group("Player")):
 		body.exited_shadow();
+
+
+func _on_child_entered_tree(node: Node) -> void:
+	if (node.get_class() == "CollisionShape2D"):
+		draw_area()
+		draw_sprites();

@@ -33,7 +33,7 @@ func spawn_potion(start : Vector2, end : Vector2):
 	potion.middle_position = start.lerp(end, 0.5);
 	potion.middle_position.y -= 100;
 	potion.end_position = end;
-	add_child(potion);
+	get_node("Entities/Potions").add_child(potion);
 
 func emit_game_over() -> void:
 	emit_signal("game_over");

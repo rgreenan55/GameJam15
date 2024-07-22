@@ -53,7 +53,7 @@ debug_color = Color(0.866667, 0.356863, 0, 0.0784314)
 
 [node name="Raycast" type="RayCast2D" parent="."]
 target_position = Vector2(80, 0)
-collision_mask = 4215
+collision_mask = 4151
 
 [connection signal="area_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_area_entered"]
 [connection signal="body_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_body_entered"]

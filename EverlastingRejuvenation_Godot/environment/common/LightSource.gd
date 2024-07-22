@@ -1,10 +1,14 @@
 extends PointLight2D
 
-
+@export var default_state : bool = true;
 @export var noise : NoiseTexture2D;
 @export var is_extinguishable : bool = true;
+
 var player_light_detector : CollisionShape2D;
 var time : float = 0;
+
+func _ready() -> void:
+	if (!default_state): extinguish();
 
 func _process(delta: float) -> void:
 	randomize_light(delta);
@@ -26,6 +30,7 @@ func randomize_light(delta: float) -> void:
 	var sampled_noise = abs(noise.noise.get_noise_1d(time));
 	self.energy = 1 + sampled_noise;
 
+# Extinguish Due to Player
 func extinguish() -> void:
 	# Light Source Extinguish Effect
 	if (is_extinguishable):
@@ -36,6 +41,19 @@ func extinguish() -> void:
 	# Call Parent Specific Extinguish - For Sprite Changes etc.
 	if (get_parent().has_method("extinguish")):
 		get_parent().extinguish();
+
+# Extinguish Not Due to Player
+func force_extinguish() -> void:
+	get_node("AreaOfEffect").set_deferred("monitorable", false);
+	get_node("AreaOfEffect/AreaOfCollision").set_deferred("disabled", true);
+	get_node("Raycast").set_deferred("enabled", false);
+	self.enabled = false;
+
+func relight() -> void:
+	get_node("AreaOfEffect").set_deferred("monitorable", true);
+	get_node("AreaOfEffect/AreaOfCollision").set_deferred("disabled", false);
+	get_node("Raycast").set_deferred("enabled", true);
+	self.enabled = true;
 
 func _on_area_of_effect_body_entered(body: Node2D) -> void:
 	if (body.is_in_group("Player")):

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://de02y4rvosvok"]
-
-[ext_resource type="Script" path="res://scenes/common/SpawnLocation.gd" id="1_svdmi"]
-
-[node name="SpawnLocation" type="Area2D"]
-script = ExtResource("1_svdmi")

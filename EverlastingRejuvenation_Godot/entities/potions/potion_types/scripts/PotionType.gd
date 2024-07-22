@@ -6,3 +6,6 @@ class_name PotionType extends Node;
 
 func apply_effect(_node : CollisionObject2D) -> void:
 	pass;
+
+func perform_on_landing(_parent : Node2D) -> void:
+	pass;

@@ -1,0 +1,146 @@
+[gd_scene load_steps=14 format=3 uid="uid://bp6yqq0ttmf76"]
+
+[ext_resource type="Texture2D" uid="uid://i3h62ttn3sbh" path="res://entities/enemies/LightBall/assets/LightBall-Sheet.png" id="1_02y88"]
+[ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="1_h3voe"]
+[ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBall.gd" id="1_j6c65"]
+[ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBallIdle.gd" id="3_0x5mx"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/common/LightSource.tscn" id="3_5k5pl"]
+[ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBallAlert.gd" id="4_4cch1"]
+
+[sub_resource type="Animation" id="Animation_7rxin"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vgkbr"]
+resource_name = "alert"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_rt5t5"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_jbynf"]
+resource_name = "transition"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kpdvh"]
+_data = {
+"RESET": SubResource("Animation_7rxin"),
+"alert": SubResource("Animation_vgkbr"),
+"idle": SubResource("Animation_rt5t5"),
+"transition": SubResource("Animation_jbynf")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_14k6g"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e0xvo"]
+radius = 60.0
+
+[node name="LightBall" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 64
+collision_mask = 103
+script = ExtResource("1_j6c65")
+
+[node name="Visuals" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_02y88")
+offset = Vector2(0, -16)
+hframes = 5
+vframes = 3
+
+[node name="Animations" type="AnimationPlayer" parent="Visuals"]
+libraries = {
+"": SubResource("AnimationLibrary_kpdvh")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_14k6g")
+
+[node name="LightBallStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("1_h3voe")
+current_state = NodePath("LightBallIdle")
+
+[node name="LightBallIdle" type="Node" parent="LightBallStateMachine"]
+script = ExtResource("3_0x5mx")
+
+[node name="LightBallAlert" type="Node" parent="LightBallStateMachine"]
+script = ExtResource("4_4cch1")
+
+[node name="LineOfSight" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineOfSight"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_e0xvo")
+
+[node name="PatienceTimer" type="Timer" parent="LineOfSight"]
+wait_time = 4.0
+
+[node name="LightSource" parent="." instance=ExtResource("3_5k5pl")]
+default_state = false
+is_extinguishable = false
+
+[connection signal="body_entered" from="LineOfSight" to="." method="_on_line_of_sight_body_entered"]
+[connection signal="body_exited" from="LineOfSight" to="." method="_on_line_of_sight_body_exited"]
+[connection signal="timeout" from="LineOfSight/PatienceTimer" to="." method="_on_patience_timer_timeout"]
