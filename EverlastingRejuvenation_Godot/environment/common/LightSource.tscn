@@ -41,6 +41,7 @@ collision_mask = 32
 
 [node name="AreaOfCollision" type="CollisionShape2D" parent="AreaOfEffect"]
 shape = SubResource("CircleShape2D_2cyob")
+debug_color = Color(0.917647, 0.74902, 0.360784, 0.0784314)
 
 [node name="LightHitbox" type="Area2D" parent="." groups=["Extinguishable"]]
 collision_layer = 1024
@@ -48,6 +49,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightHitbox"]
 shape = SubResource("CircleShape2D_1lhm6")
+debug_color = Color(0.866667, 0.356863, 0, 0.0784314)
 
 [node name="Raycast" type="RayCast2D" parent="."]
 target_position = Vector2(80, 0)

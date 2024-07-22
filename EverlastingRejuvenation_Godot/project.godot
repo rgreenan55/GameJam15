@@ -109,6 +109,7 @@ Ingredient4={
 2d_physics/layer_11="LightEmitters"
 2d_physics/layer_12="LightDetectors"
 2d_physics/layer_13="LightBlocker"
+2d_physics/layer_14="ShadowArea"
 2d_physics/layer_16="UserInterface"
 
 [rendering]
