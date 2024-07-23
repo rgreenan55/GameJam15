@@ -23,7 +23,7 @@ func load_scene() -> void:
 	level_node.connect("game_over", game_over);
 
 	# Handle Level Instructions
-	#get_node("HUD").visible = level_node.hud_active;
+	get_node("HUD").visible = level_node.hud_active;
 	add_child(level_node);
 
 func _on_game_over_menu_retry() -> void:
@@ -38,3 +38,6 @@ func toggle_crafting_menu(is_open : bool) -> void:
 	get_node("CraftingMenu").visible = is_open;
 	if (!is_open):
 		get_node("CraftingMenu").close_menu();
+		get_node("HUD").visible = true;
+	else:
+		get_node("HUD").visible = false;

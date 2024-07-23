@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ct0jdm3g86l0a" path="res://ui/menus/CraftingMenu/assets/Ingredients.png" id="2_6ewmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68fvb"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wv8no"]
 radius = 0.01
@@ -13,6 +13,7 @@ radius = 0.01
 script = ExtResource("1_dhnvd")
 
 [node name="IngredientSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_6ewmh")
 hframes = 2
 vframes = 2
