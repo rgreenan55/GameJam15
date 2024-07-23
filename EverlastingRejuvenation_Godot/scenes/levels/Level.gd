@@ -23,12 +23,8 @@ func _ready() -> void:
 	get_node("Entities/Player").add_child(player);
 
 func spawn_potion(start : Vector2, end : Vector2):
-	var potion : Potion = potion_scene.instantiate();
-
-	# Remove This
-	potion.type_scene = potion_types[i];
-	i = (i + 1) % 3
-
+	var potion : Potion = PotionCrafting.throw_potion();
+	if (!potion): return;
 	potion.start_position = start;
 	potion.middle_position = start.lerp(end, 0.5);
 	potion.middle_position.y -= 100;

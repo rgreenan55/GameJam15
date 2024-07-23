@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbqykrdxy18va"]
+
+[ext_resource type="Texture2D" uid="uid://c44ox2gdbw3ch" path="res://ui/menus/CraftingMenu/assets/CraftingMenu.png" id="1_3n6rx"]
+[ext_resource type="PackedScene" uid="uid://puuhou3vf11u" path="res://ui/menus/CraftingMenu/subnodes/Ingredient.tscn" id="1_8prw0"]
+[ext_resource type="Script" path="res://ui/menus/CraftingMenu/scripts/CraftingMenu.gd" id="1_tfgje"]
+[ext_resource type="PackedScene" uid="uid://dpxlrqdys1uey" path="res://ui/menus/CraftingMenu/subnodes/IngredientSlot.tscn" id="3_67fb5"]
+
+[node name="CraftingMenu" type="CanvasLayer"]
+script = ExtResource("1_tfgje")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("1_3n6rx")
+
+[node name="Ingredients" type="Node2D" parent="."]
+
+[node name="Ingredient1" parent="Ingredients" instance=ExtResource("1_8prw0")]
+position = Vector2(498, 250)
+
+[node name="Ingredient2" parent="Ingredients" instance=ExtResource("1_8prw0")]
+position = Vector2(526, 262)
+
+[node name="Ingredient3" parent="Ingredients" instance=ExtResource("1_8prw0")]
+position = Vector2(491, 277)
+
+[node name="Ingredient4" parent="Ingredients" instance=ExtResource("1_8prw0")]
+position = Vector2(520, 290)
+
+[node name="IngredientSlots" type="Node2D" parent="."]
+
+[node name="IngredientSlot1" parent="IngredientSlots" instance=ExtResource("3_67fb5")]
+position = Vector2(328, 224)
+
+[node name="IngredientSlot2" parent="IngredientSlots" instance=ExtResource("3_67fb5")]
+position = Vector2(376, 224)
+
+[node name="MixButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 34.0
+offset_right = -64.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+text = "Mix"
+
+[connection signal="ingredient_added" from="IngredientSlots/IngredientSlot1" to="." method="_ingredient_added"]
+[connection signal="ingredient_removed" from="IngredientSlots/IngredientSlot1" to="." method="_ingredient_removed"]
+[connection signal="ingredient_added" from="IngredientSlots/IngredientSlot2" to="." method="_ingredient_added"]
+[connection signal="ingredient_removed" from="IngredientSlots/IngredientSlot2" to="." method="_ingredient_removed"]
+[connection signal="pressed" from="MixButton" to="." method="_on_mix_button_pressed"]

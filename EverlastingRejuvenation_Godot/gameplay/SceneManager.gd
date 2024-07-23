@@ -4,6 +4,7 @@ class_name SceneManager extends Node
 var current_level : PackedScene;
 
 func _ready() -> void:
+	PotionCrafting.connect("toggle_menu", toggle_crafting_menu);
 	load_scene();
 
 # Remove This
@@ -22,7 +23,7 @@ func load_scene() -> void:
 	level_node.connect("game_over", game_over);
 
 	# Handle Level Instructions
-	get_node("HUD").visible = level_node.hud_active;
+	#get_node("HUD").visible = level_node.hud_active;
 	add_child(level_node);
 
 func _on_game_over_menu_retry() -> void:
@@ -32,3 +33,8 @@ func _on_game_over_menu_retry() -> void:
 func game_over() -> void:
 	get_node("GameOverMenu").visible = true;
 	get_tree().paused = true;
+
+func toggle_crafting_menu(is_open : bool) -> void:
+	get_node("CraftingMenu").visible = is_open;
+	if (!is_open):
+		get_node("CraftingMenu").close_menu();

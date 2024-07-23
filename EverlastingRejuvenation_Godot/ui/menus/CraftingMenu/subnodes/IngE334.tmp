@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://puuhou3vf11u"]
+
+[ext_resource type="Script" path="res://ui/menus/CraftingMenu/subnodes/scripts/Ingredient.gd" id="1_dhnvd"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q8iwe"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68fvb"]
+size = Vector2(40, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wv8no"]
+radius = 0.01
+
+[node name="Ingredient" type="CharacterBody2D"]
+script = ExtResource("1_dhnvd")
+
+[node name="IngredientSprite" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_q8iwe")
+
+[node name="MouseDetection" type="Area2D" parent="."]
+
+[node name="MouseDetectionShape" type="CollisionShape2D" parent="MouseDetection"]
+shape = SubResource("RectangleShape2D_68fvb")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wv8no")
+
+[connection signal="mouse_entered" from="MouseDetection" to="." method="_mouse_entered"]
+[connection signal="mouse_exited" from="MouseDetection" to="." method="_mouse_exited"]

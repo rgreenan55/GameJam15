@@ -9,13 +9,10 @@
 script = ExtResource("1_v7pjo")
 
 [node name="CraftingMenu" parent="." instance=ExtResource("2_3xode")]
-visible = false
-
-[node name="GameOverMenu" parent="." instance=ExtResource("3_0lubn")]
 
 [node name="HUD" parent="." instance=ExtResource("3_s22ck")]
-process_mode = 4
-visible = false
+
+[node name="GameOverMenu" parent="." instance=ExtResource("3_0lubn")]
 
 [connection signal="exit" from="GameOverMenu" to="." method="_on_game_over_menu_exit"]
 [connection signal="retry" from="GameOverMenu" to="." method="_on_game_over_menu_retry"]

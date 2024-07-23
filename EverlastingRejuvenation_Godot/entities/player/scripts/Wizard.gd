@@ -15,6 +15,9 @@ var life_bar_shown : bool = true;
 var max_time : float = 10;
 var time : float = 10;
 
+func _ready():
+	PotionCrafting.connect("toggle_menu", toggle_crafting)
+
 func _process(delta: float) -> void:
 	if (out_of_shadow): time -= delta;
 	else: time += delta * 2;
@@ -48,3 +51,7 @@ func fade_in_life_bar() -> void:
 	life_bar_shown = true;
 	var tween = create_tween();
 	tween.tween_property(life_bar, "modulate", Color(1,1,1,1), 1.0);
+
+func toggle_crafting(is_open : bool) -> void:
+	if (is_open): state_machine.on_child_transitioned("WizardCraftingState");
+	else: state_machine.on_child_transitioned("WizardIdleState");
