@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://brhv1dreutdwq"]
+
+[ext_resource type="Script" path="res://entities/enemies/Utilitiy/EntityPath.gd" id="1_mdwdr"]
+
+[node name="EntityPath" type="Path2D"]
+script = ExtResource("1_mdwdr")
+speed_px = 10.0
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+v_offset = 8.0
+rotates = false

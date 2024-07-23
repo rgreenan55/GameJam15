@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d376huekjp3c2" path="res://entities/enemies/Knight/Knight.tscn" id="3_hh8nk"]
 [ext_resource type="TileSet" uid="uid://bfcps13pl15fh" path="res://scenes/common/tilesets/stone_walls/StoneWalls.tres" id="3_qlh2u"]
 [ext_resource type="PackedScene" uid="uid://pk32boqhd2py" path="res://environment/LampPost/Lamppost.tscn" id="4_3duum"]
-[ext_resource type="PackedScene" uid="uid://6kojr136venq" path="res://entities/enemies/AnimatedTorch/AnimatedTorch.tscn" id="5_7cgfe"]
+[ext_resource type="PackedScene" uid="uid://brhv1dreutdwq" path="res://entities/enemies/Utilitiy/EntityPath.tscn" id="7_bhq8o"]
 [ext_resource type="PackedScene" uid="uid://caj5xclr1otl7" path="res://environment/ShadowArea/ShadowArea.tscn" id="7_tubrl"]
 [ext_resource type="Shader" path="res://scenes/common/shaders/fog.gdshader" id="8_pueho"]
 [ext_resource type="PackedScene" uid="uid://bp6yqq0ttmf76" path="res://entities/enemies/LightBall/LightBall.tscn" id="9_qf2rk"]
@@ -19,7 +19,11 @@ size = Vector2(56, 216)
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwmqx"]
 radius = 24.0
 
-[sub_resource type="Curve2D" id="Curve2D_sqd8v"]
+[sub_resource type="Curve2D" id="Curve2D_s0l6w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -62.294, -78.331, 0, 0, 0, 0, -30.294, 17.669, 0, 0, 0, 0, 1.70602, -78.331, 0, 0, 0, 0, -62.294, -78.331)
+}
+point_count = 4
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qjtvg"]
 frequency = 0.0075
@@ -82,7 +86,7 @@ debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 [node name="ShadowArea3" parent="LevelDesign/ShadowAreas" instance=ExtResource("7_tubrl")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea3"]
-position = Vector2(96, 224)
+position = Vector2(384, 296)
 shape = SubResource("CircleShape2D_nwmqx")
 debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 
@@ -96,16 +100,14 @@ y_sort_enabled = true
 [node name="Enemies" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
-[node name="AnimatedTorch" parent="Entities/Enemies" instance=ExtResource("5_7cgfe")]
-position = Vector2(373, 264)
-
-[node name="Knight" parent="Entities/Enemies" instance=ExtResource("3_hh8nk")]
-position = Vector2(448, 48)
-rotation = 1.5708
-patrol_path = SubResource("Curve2D_sqd8v")
-
 [node name="LightBall" parent="Entities/Enemies" instance=ExtResource("9_qf2rk")]
-position = Vector2(51, 251)
+position = Vector2(384, 296)
+
+[node name="EntityPath" parent="Entities/Enemies" instance=ExtResource("7_bhq8o")]
+position = Vector2(510.294, 126.331)
+curve = SubResource("Curve2D_s0l6w")
+speed_px = 20.0
+path_entity_scene = ExtResource("3_hh8nk")
 
 [node name="Potions" type="Node2D" parent="Entities"]
 z_index = 100

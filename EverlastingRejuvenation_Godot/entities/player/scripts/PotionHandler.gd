@@ -5,6 +5,7 @@ class_name PotionHandler extends Node2D
 
 # Keep Track of Positions
 func _process(_delta: float) -> void:
+	visible = PotionCrafting.potion_queue.size() > 0 && !PotionCrafting.is_menu_open;
 	get_node("ThrowLine").points = get_bezier_curve(position, get_local_mouse_position());
 
 # On Mouse Click, Instantiate Potion Throw

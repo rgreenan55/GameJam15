@@ -1,22 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://d376huekjp3c2"]
+[gd_scene load_steps=8 format=3 uid="uid://d376huekjp3c2"]
 
-[ext_resource type="Script" path="res://entities/enemies/Knight/Knight.gd" id="1_3xhfj"]
+[ext_resource type="Script" path="res://entities/enemies/Knight/scripts/Knight.gd" id="1_3xhfj"]
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="1_m7m6f"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_32vh7"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/IdleKnightState.gd" id="3_acefs"]
+[ext_resource type="Texture2D" uid="uid://bcmaow5rpy6np" path="res://entities/enemies/Knight/assets/Knight.png" id="3_nh8lp"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/AlertKnightState.gd" id="4_3qiir"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eytr"]
-size = Vector2(16, 16)
-
-[sub_resource type="Gradient" id="Gradient_dqrpm"]
-offsets = PackedFloat32Array(0.493789)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvg82"]
-gradient = SubResource("Gradient_dqrpm")
-width = 16
-height = 16
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wjrk"]
+radius = 1.10701
+height = 8.57219
 
 [node name="Knight" type="CharacterBody2D" groups=["Enemy", "Polymorphable"]]
 collision_layer = 64
@@ -24,23 +17,26 @@ collision_mask = 99
 script = ExtResource("1_3xhfj")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_8eytr")
+position = Vector2(0, -0.5)
+rotation = 1.5708
+scale = Vector2(0.903331, 0.933251)
+shape = SubResource("CapsuleShape2D_8wjrk")
 
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="LightSource" parent="Visuals" instance=ExtResource("1_m7m6f")]
 position = Vector2(0, -8)
+color = Color(0.866667, 0.345098, 0.156863, 1)
 is_extinguishable = false
 
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
-texture = SubResource("GradientTexture2D_kvg82")
-offset = Vector2(0, -8)
+modulate = Color(0.666667, 0.666667, 0.666667, 1)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_nh8lp")
+offset = Vector2(0, -16)
 
 [node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../..")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="KnightStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_32vh7")

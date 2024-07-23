@@ -13,6 +13,7 @@ func _process(_delta: float) -> void:
 		next_scene();
 
 func next_scene():
+	PotionCrafting.reset();
 	remove_child(get_node("Level" + str(level_id)));
 	level_id += 1;
 	load_scene();
@@ -31,6 +32,9 @@ func _on_game_over_menu_retry() -> void:
 	load_scene();
 
 func game_over() -> void:
+	PotionCrafting.reset();
+	get_node("CraftingMenu").visible = false;
+	get_node("HUD").visible = false;
 	get_node("GameOverMenu").visible = true;
 	get_tree().paused = true;
 
