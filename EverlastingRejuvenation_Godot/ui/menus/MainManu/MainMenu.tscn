@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/menus/MainManu/MainMenu.gd" id="1_ufc0d"]
 [ext_resource type="PackedScene" uid="uid://btd23m8n5bmwq" path="res://gameplay/SceneManager.tscn" id="2_tmgjs"]
-[ext_resource type="Texture2D" uid="uid://dn5ka85pscx3e" path="res://ui/menus/MainManu/MainMenu.png" id="3_lbr2h"]
+[ext_resource type="Texture2D" uid="uid://jgufn4fwhy6i" path="res://ui/menus/MainManu/MainMenu.png" id="3_lbr2h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3soq"]
 font_size = 24
@@ -45,7 +45,7 @@ theme_override_constants/separation = 96
 
 [node name="TitleLabel" type="Label" parent="ControlLayer/MarginContainer/VerticalContainer"]
 layout_mode = 2
-text = "The Quest for Everlasting Rejuvenation"
+text = "Some Title Idk"
 label_settings = SubResource("LabelSettings_c3soq")
 
 [node name="HorizontalContainer" type="HBoxContainer" parent="ControlLayer/MarginContainer/VerticalContainer"]

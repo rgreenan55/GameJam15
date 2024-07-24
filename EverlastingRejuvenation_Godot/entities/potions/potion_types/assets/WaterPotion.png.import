@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cni4qogacbaxw"
-path="res://.godot/imported/HudSlot.png-f7f1f04dc08a3cc7b15e2b8f4565cc0b.ctex"
+uid="uid://b3w6677bj8dl8"
+path="res://.godot/imported/WaterPotion.png-64ae2cf0d3f2aff867489521953e17b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/menus/HUD/HudSlot.png"
-dest_files=["res://.godot/imported/HudSlot.png-f7f1f04dc08a3cc7b15e2b8f4565cc0b.ctex"]
+source_file="res://entities/potions/potion_types/assets/WaterPotion.png"
+dest_files=["res://.godot/imported/WaterPotion.png-64ae2cf0d3f2aff867489521953e17b0.ctex"]
 
 [params]
 

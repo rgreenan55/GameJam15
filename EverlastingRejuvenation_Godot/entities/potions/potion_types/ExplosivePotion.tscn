@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg4fj5nc1yj0n"]
+
+[ext_resource type="Script" path="res://entities/potions/potion_types/scripts/ExplosivePotion.gd" id="1_60eri"]
+
+[node name="ExplosivePotion" type="Node"]
+script = ExtResource("1_60eri")
+sprite = "\"res://entities/potions/potion_types/ExplosivePotion.tscn\""
+primary_color = Color(1, 0.443137, 0.113725, 1)
+secondary_color = Color(0.898039, 0, 0.239216, 1)

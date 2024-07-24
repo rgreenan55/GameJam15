@@ -7,12 +7,13 @@
 
 [sub_resource type="Gradient" id="Gradient_c2n8l"]
 offsets = PackedFloat32Array(0.475155)
-colors = PackedColorArray(0, 0, 0, 0.196078)
+colors = PackedColorArray(0, 0, 0, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xwubr"]
 gradient = SubResource("Gradient_c2n8l")
 
 [node name="CraftingMenu" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_tfgje")
 
 [node name="TextureRect" type="TextureRect" parent="."]

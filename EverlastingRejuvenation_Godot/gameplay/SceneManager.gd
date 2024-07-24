@@ -7,10 +7,10 @@ func _ready() -> void:
 	PotionCrafting.connect("toggle_menu", toggle_crafting_menu);
 	load_scene();
 
-# Remove This
+# Remove Me
 func _process(_delta: float) -> void:
-	if(Input.is_action_just_pressed("NextLevel")):
-		next_scene();
+	pass;#if(Input.is_action_just_pressed("NextLevel")):
+	#	next_scene();
 
 func next_scene():
 	PotionCrafting.reset();
@@ -42,6 +42,6 @@ func toggle_crafting_menu(is_open : bool) -> void:
 	get_node("CraftingMenu").visible = is_open;
 	if (!is_open):
 		get_node("CraftingMenu").close_menu();
-		get_node("HUD").visible = true;
+		get_node("HUD").get_node("CraftingIcon").visible = true;
 	else:
-		get_node("HUD").visible = false;
+		get_node("HUD").get_node("CraftingIcon").visible = false;

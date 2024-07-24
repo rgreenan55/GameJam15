@@ -31,6 +31,7 @@ _data = {
 radius = 11.0
 
 [node name="Potion" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("1_na65a")

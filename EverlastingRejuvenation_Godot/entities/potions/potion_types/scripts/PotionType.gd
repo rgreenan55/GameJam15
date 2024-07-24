@@ -1,5 +1,7 @@
 class_name PotionType extends Node;
 
+@export var sprite : String;
+
 @export var group_check : String;
 @export var primary_color : Color;
 @export var secondary_color : Color;

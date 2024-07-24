@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://8cddaroitus4"]
+
+[ext_resource type="Script" path="res://entities/potions/potion_types/scripts/IcePotion.gd" id="1_bgmvg"]
+
+[node name="IcePotion" type="Node"]
+script = ExtResource("1_bgmvg")
+sprite = "\"res://entities/potions/potion_types/assets/IcePotion.png\""
+primary_color = Color(0.654902, 0.768627, 0.996078, 1)
+secondary_color = Color(1, 1, 1, 1)

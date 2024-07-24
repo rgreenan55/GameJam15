@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cniagys5rwat6"]
+[gd_scene load_steps=5 format=3 uid="uid://cniagys5rwat6"]
 
 [ext_resource type="PackedScene" uid="uid://cmjst4b06xjbi" path="res://ui/menus/HUD/HotbarSlot.tscn" id="1_tp6w6"]
 [ext_resource type="Texture2D" uid="uid://ch8wl3sd5w5ah" path="res://ui/menus/HUD/assets/IngredientSack.png" id="2_epoeh"]
+[ext_resource type="Script" path="res://ui/menus/HUD/scripts/HUDPotionDisplay.gd" id="3_0uod3"]
 [ext_resource type="Texture2D" uid="uid://d1ttnm267ymwr" path="res://ui/menus/HUD/assets/TabButton.png" id="3_ejvlo"]
 
 [node name="HUD" type="CanvasLayer"]
@@ -22,21 +23,21 @@ texture = ExtResource("2_epoeh")
 position = Vector2(590, 345)
 texture = ExtResource("3_ejvlo")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 640.0
-offset_bottom = 360.0
+[node name="HudPotionDisplayContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 16
 
-[node name="HotbarSlot" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
+[node name="HudPotionDisplay" type="VBoxContainer" parent="HudPotionDisplayContainer"]
 layout_mode = 2
-key_toggle = &"Ingredient1"
+theme_override_constants/separation = 40
+script = ExtResource("3_0uod3")
 
-[node name="HotbarSlot2" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
+[node name="HotbarSlot" parent="HudPotionDisplayContainer/HudPotionDisplay" instance=ExtResource("1_tp6w6")]
 layout_mode = 2
-key_toggle = &"Ingredient2"
 
-[node name="HotbarSlot3" parent="HBoxContainer" instance=ExtResource("1_tp6w6")]
+[node name="HotbarSlot2" parent="HudPotionDisplayContainer/HudPotionDisplay" instance=ExtResource("1_tp6w6")]
 layout_mode = 2
-key_toggle = &"Ingredient3"
+
+[node name="HotbarSlot3" parent="HudPotionDisplayContainer/HudPotionDisplay" instance=ExtResource("1_tp6w6")]
+layout_mode = 2
