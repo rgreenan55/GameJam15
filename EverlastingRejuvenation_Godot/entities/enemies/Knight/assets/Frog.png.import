@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcmaow5rpy6np"
-path="res://.godot/imported/Knight.png-997d6b33bc46d2ab93ae2d7a7e8c3aa3.ctex"
+uid="uid://u222kmlgjebf"
+path="res://.godot/imported/Frog.png-872082e67c6de0bf47bf1753c4913685.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/Knight/assets/Knight.png"
-dest_files=["res://.godot/imported/Knight.png-997d6b33bc46d2ab93ae2d7a7e8c3aa3.ctex"]
+source_file="res://entities/enemies/Knight/assets/Frog.png"
+dest_files=["res://.godot/imported/Frog.png-872082e67c6de0bf47bf1753c4913685.ctex"]
 
 [params]
 

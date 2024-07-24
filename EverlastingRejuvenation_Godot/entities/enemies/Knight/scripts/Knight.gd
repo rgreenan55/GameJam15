@@ -14,4 +14,7 @@ func _process(_delta: float) -> void:
 	temp_pos = global_position
 
 func polymorph() -> void:
-	modulate = Color.GREEN;
+	get_node("Visuals/Sprite").visible = false;
+	get_node("Visuals/PolymorphSprite").visible = true;
+	get_node("Visuals/LightSource").force_extinguish();
+	get_parent().get_parent().speed_px = 0;

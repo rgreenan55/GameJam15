@@ -1,15 +1,55 @@
-[gd_scene load_steps=8 format=3 uid="uid://d376huekjp3c2"]
+[gd_scene load_steps=12 format=3 uid="uid://d376huekjp3c2"]
 
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/Knight.gd" id="1_3xhfj"]
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="1_m7m6f"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_32vh7"]
+[ext_resource type="Texture2D" uid="uid://br60q375u24ne" path="res://entities/enemies/Knight/assets/KnightSpriteSheet.png" id="3_57ou3"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/IdleKnightState.gd" id="3_acefs"]
-[ext_resource type="Texture2D" uid="uid://bcmaow5rpy6np" path="res://entities/enemies/Knight/assets/Knight.png" id="3_nh8lp"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/AlertKnightState.gd" id="4_3qiir"]
+[ext_resource type="Texture2D" uid="uid://u222kmlgjebf" path="res://entities/enemies/Knight/assets/Frog.png" id="4_k0eoq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wjrk"]
-radius = 1.10701
-height = 8.57219
+radius = 0.5
+height = 6.0
+
+[sub_resource type="Animation" id="Animation_7rwty"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_scu6j"]
+resource_name = "walking"
+length = 1.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48crp"]
+_data = {
+"RESET": SubResource("Animation_7rwty"),
+"walking": SubResource("Animation_scu6j")
+}
 
 [node name="Knight" type="CharacterBody2D" groups=["Enemy", "Polymorphable"]]
 collision_layer = 64
@@ -19,24 +59,33 @@ script = ExtResource("1_3xhfj")
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 rotation = 1.5708
-scale = Vector2(0.903331, 0.933251)
+scale = Vector2(0.955855, 0.977826)
 shape = SubResource("CapsuleShape2D_8wjrk")
 
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="LightSource" parent="Visuals" instance=ExtResource("1_m7m6f")]
 position = Vector2(0, -8)
-color = Color(0.866667, 0.345098, 0.156863, 1)
 is_extinguishable = false
 
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
-modulate = Color(0.666667, 0.666667, 0.666667, 1)
+modulate = Color(0.443137, 0.443137, 0.443137, 1)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_nh8lp")
+texture = ExtResource("3_57ou3")
+offset = Vector2(0, -24)
+hframes = 7
+
+[node name="PolymorphSprite" type="Sprite2D" parent="Visuals"]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_k0eoq")
 offset = Vector2(0, -16)
 
 [node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_48crp")
+}
 
 [node name="KnightStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_32vh7")
@@ -44,6 +93,7 @@ current_state = NodePath("IdleKnightState")
 
 [node name="IdleKnightState" type="Node" parent="KnightStateMachine"]
 script = ExtResource("3_acefs")
+animation_name = "walking"
 
 [node name="AlertKnightState" type="Node" parent="KnightStateMachine"]
 script = ExtResource("4_3qiir")
