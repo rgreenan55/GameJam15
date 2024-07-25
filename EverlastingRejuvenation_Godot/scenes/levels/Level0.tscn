@@ -14,7 +14,7 @@
 size = Vector2(144, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5o5d7"]
-size = Vector2(56, 216)
+size = Vector2(56, 171)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwmqx"]
 radius = 24.0
@@ -79,7 +79,7 @@ debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 [node name="ShadowArea2" parent="LevelDesign/ShadowAreas" instance=ExtResource("7_tubrl")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea2"]
-position = Vector2(572, 148)
+position = Vector2(572, 145.5)
 shape = SubResource("RectangleShape2D_5o5d7")
 debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 
@@ -101,12 +101,12 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="LightBall" parent="Entities/Enemies" instance=ExtResource("9_qf2rk")]
-position = Vector2(384, 296)
+position = Vector2(318, 89)
 
 [node name="EntityPath" parent="Entities/Enemies" instance=ExtResource("7_bhq8o")]
 position = Vector2(510.294, 126.331)
 curve = SubResource("Curve2D_s0l6w")
-speed_px = 20.0
+speed_px = 12.5
 path_entity_scene = ExtResource("3_hh8nk")
 
 [node name="Potions" type="Node2D" parent="Entities"]
@@ -120,6 +120,8 @@ y_sort_enabled = true
 position = Vector2(243, 178)
 
 [node name="VisualAffects" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="VisualAffects"]
 layer = 50
@@ -131,3 +133,4 @@ motion_mirroring = Vector2(640, 360)
 material = SubResource("ShaderMaterial_xkyp6")
 offset_right = 640.0
 offset_bottom = 360.0
+mouse_filter = 2

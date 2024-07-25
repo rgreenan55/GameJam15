@@ -46,6 +46,7 @@ func craft_potion(ingredient1 : int, ingredient2 : int) -> void:
 		potion_queue.push_back(potion);
 		emit_signal("queue_changed", potion_type_name, false);
 	else:
+		# Visual Indicator Here
 		push_warning("PotionCrafting: Too many potions in queue");
 
 func throw_potion() -> Potion:
@@ -53,5 +54,4 @@ func throw_potion() -> Potion:
 		emit_signal("queue_changed", "", true);
 		return potion_queue.pop_front();
 	else:
-		push_warning("PotionCrafting: No potions crafted");
 		return null;

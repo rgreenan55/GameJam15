@@ -22,7 +22,7 @@ frequency = 0.75
 noise = SubResource("FastNoiseLite_yk8up")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cyob"]
-radius = 80.0
+radius = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lhm6"]
 
@@ -53,7 +53,7 @@ shape = SubResource("CircleShape2D_1lhm6")
 debug_color = Color(0.866667, 0.356863, 0, 0.0784314)
 
 [node name="Raycast" type="RayCast2D" parent="."]
-target_position = Vector2(80, 0)
+target_position = Vector2(70, 0)
 collision_mask = 4151
 
 [connection signal="area_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_area_entered"]

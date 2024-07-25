@@ -15,7 +15,6 @@ func _on_mix_button_pressed() -> void:
 
 	# Add Potion to Queue.
 	ingredients.sort();
-	print(ingredients);
 	PotionCrafting.craft_potion(ingredients[0], ingredients[1]);
 
 func _ingredient_added() -> void:

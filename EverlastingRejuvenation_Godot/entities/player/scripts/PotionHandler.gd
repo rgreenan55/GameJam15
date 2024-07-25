@@ -2,6 +2,7 @@ class_name PotionHandler extends Node2D
 
 @export var potion_scene : PackedScene;
 @onready var player = get_parent();
+var on_cooldown : bool = false;
 
 # Keep Track of Positions
 func _process(_delta: float) -> void:
@@ -10,8 +11,10 @@ func _process(_delta: float) -> void:
 
 # On Mouse Click, Instantiate Potion Throw
 func _on_potion_throw_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if (event.is_action("ThrowPotion") && Input.is_action_just_pressed("ThrowPotion")):
+	if (!on_cooldown && event.is_action("ThrowPotion") && Input.is_action_just_pressed("ThrowPotion")):
 		player.emit_signal("throw_potion", player.position, get_global_mouse_position());
+		get_node("ThrowDelay").start();
+		on_cooldown = true;
 
 func _on_potion_throw_area_mouse_entered() -> void:
 	get_node("ThrowLine").visible = true;
@@ -32,3 +35,7 @@ func get_bezier_curve(start : Vector2, end : Vector2) -> Array[Vector2]:
 		points.push_back(point);
 		progress += 0.05;
 	return points;
+
+
+func _on_throw_delay_timeout() -> void:
+	on_cooldown = false;
