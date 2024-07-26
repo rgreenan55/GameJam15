@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d2cm4tdo0smj6"]
+
+[node name="EnemyBlocker" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 64

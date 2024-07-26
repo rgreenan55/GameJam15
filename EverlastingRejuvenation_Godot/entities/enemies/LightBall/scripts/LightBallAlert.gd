@@ -5,4 +5,4 @@ func Enter() -> void:
 	await parent.get_node("Visuals/Animations").animation_finished;
 	parent.get_node("Visuals/Particles").emitting = true;
 	parent.get_node("Visuals/Animations").play("alert");
-	parent.get_node("Visuals/LightSource").relight();
+	parent.get_node("LightSource").relight();

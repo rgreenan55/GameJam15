@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6lcyn5jyw4rd"
-path="res://.godot/imported/AnimatedTorch-Sheet.png-a6dcfa3b201fffcaa6932a17bc661c00.ctex"
+uid="uid://c8dkacu2qh0le"
+path="res://.godot/imported/KnightIceCover.png-d891ac1bd73100fd68a12db8a15a6f82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/AnimatedTorch/assets/AnimatedTorch-Sheet.png"
-dest_files=["res://.godot/imported/AnimatedTorch-Sheet.png-a6dcfa3b201fffcaa6932a17bc661c00.ctex"]
+source_file="res://entities/enemies/Knight/assets/KnightIceCover.png"
+dest_files=["res://.godot/imported/KnightIceCover.png-d891ac1bd73100fd68a12db8a15a6f82.ctex"]
 
 [params]
 

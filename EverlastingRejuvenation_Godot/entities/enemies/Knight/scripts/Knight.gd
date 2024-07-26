@@ -1,20 +1,34 @@
 extends CharacterBody2D
 
-var temp_pos : Vector2;
-
-func _ready() -> void:
-	pass; #get_node("Patrol_Path").Curve = patrol_path;
+@onready var state_machine : StateMachine = get_node("KnightStateMachine");
 
 func _process(_delta: float) -> void:
-	if (temp_pos):
-		if (temp_pos.x > global_position.x):
-			get_node("Visuals/Sprite").flip_h = true;
-		else:
-			get_node("Visuals/Sprite").flip_h = false;
-	temp_pos = global_position
+	if (velocity == Vector2.ZERO): get_node("Visuals/Animations").play("idle");
+	else: get_node("Visuals/Animations").play("walking");
+
+	if (velocity.x < 0):
+		get_node("Visuals/Sprite").flip_h = true;
+		get_node("Visuals/FreezeCoverSprite").flip_h = true;
+	elif(velocity.x > 0):
+		get_node("Visuals/Sprite").flip_h = false;
+		get_node("Visuals/FreezeCoverSprite").flip_h = false;
 
 func polymorph() -> void:
 	get_node("Visuals/Sprite").visible = false;
 	get_node("Visuals/PolymorphSprite").visible = true;
-	get_node("Visuals/LightSource").force_extinguish();
-	get_parent().get_parent().speed_px = 0;
+	get_node("LightSource").force_extinguish();
+	state_machine.on_child_transitioned("IdleKnightState");
+	get_node("PolymorphTimer").start();
+
+func unpolymorph() -> void:
+	get_node("Visuals/Sprite").visible = true;
+	get_node("Visuals/PolymorphSprite").visible = false;
+	get_node("LightSource").relight();
+
+func freeze() -> void:
+	state_machine.on_child_transitioned("FrozenKnightState");
+
+func explode() -> void:
+	if (state_machine.current_state.name == "FrozenKnightState"):
+		state_machine.on_child_transitioned("IdleKnightState");
+	# play grunt sound queue

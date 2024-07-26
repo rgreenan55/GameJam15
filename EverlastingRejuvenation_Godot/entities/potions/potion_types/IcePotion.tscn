@@ -5,5 +5,6 @@
 [node name="IcePotion" type="Node"]
 script = ExtResource("1_bgmvg")
 sprite = "\"res://entities/potions/potion_types/assets/IcePotion.png\""
+group_check = "Freezable"
 primary_color = Color(0.654902, 0.768627, 0.996078, 1)
 secondary_color = Color(1, 1, 1, 1)

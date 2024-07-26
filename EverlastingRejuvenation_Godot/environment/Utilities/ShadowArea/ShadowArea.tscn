@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://caj5xclr1otl7"]
 
-[ext_resource type="Script" path="res://environment/ShadowArea/ShadowArea.gd" id="1_gx4o4"]
+[ext_resource type="Script" path="res://environment/Utilities/ShadowArea/ShadowArea.gd" id="1_gx4o4"]
 
 [node name="ShadowArea" type="Area2D" groups=["Shadow"]]
 collision_layer = 8192

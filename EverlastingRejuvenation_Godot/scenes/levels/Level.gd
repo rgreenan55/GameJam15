@@ -1,6 +1,8 @@
 class_name Level extends Node2D
 
 signal game_over;
+signal collectible_count;
+signal collectible;
 
 @export var spawn_position : Vector2;
 @export var hud_active : bool = true;
@@ -16,11 +18,8 @@ var potion_types : Array[PackedScene] = [
 var i : int = 0;
 
 func _ready() -> void:
-	var player = player_scene.instantiate();
-	player.position = spawn_position;
-	player.connect("throw_potion", spawn_potion);
-	player.connect("player_death", emit_game_over);
-	get_node("Entities/Player").add_child(player);
+	initiate_player();
+	initiate_collectibles();
 
 func spawn_potion(start : Vector2, end : Vector2):
 	var potion : Potion = PotionCrafting.throw_potion();
@@ -33,3 +32,13 @@ func spawn_potion(start : Vector2, end : Vector2):
 
 func emit_game_over() -> void:
 	emit_signal("game_over");
+
+func initiate_player() -> void:
+	var player = player_scene.instantiate();
+	player.position = spawn_position;
+	player.connect("throw_potion", spawn_potion);
+	player.connect("player_death", emit_game_over);
+	get_node("Entities/Player").add_child(player);
+
+func initiate_collectibles() -> void:
+	CollectibleHandler.set_total(get_tree().get_nodes_in_group("Collectible").size());

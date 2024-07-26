@@ -204,8 +204,8 @@ anti_aliasing_size = 0.5
 
 [node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
 y_sort_enabled = true
-collision_layer = 32
-collision_mask = 1111
+collision_layer = 288
+collision_mask = 1367
 script = ExtResource("1_ee4lp")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -300,11 +300,6 @@ current_state = NodePath("WizardWalkingState")
 script = ExtResource("4_gpqla")
 animation_name = "idle"
 
-[node name="LongIdleDelay" type="Timer" parent="WizardStateMachine/WizardIdleState"]
-process_priority = 1
-wait_time = 5.0
-one_shot = true
-
 [node name="WizardWalkingState" type="Node" parent="WizardStateMachine"]
 script = ExtResource("5_nupd3")
 animation_name = "walking"
@@ -317,8 +312,13 @@ animation_name = "crafting_start"
 script = ExtResource("6_koe07")
 animation_name = "dying"
 
+[node name="LongIdleDelay" type="Timer" parent="."]
+process_priority = 1
+wait_time = 5.0
+one_shot = true
+
 [connection signal="input_event" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_input_event"]
 [connection signal="mouse_entered" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]
 [connection signal="mouse_exited" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_exited"]
 [connection signal="timeout" from="PotionHandler/ThrowDelay" to="PotionHandler" method="_on_throw_delay_timeout"]
-[connection signal="timeout" from="WizardStateMachine/WizardIdleState/LongIdleDelay" to="WizardStateMachine/WizardIdleState" method="_on_long_idle_delay_timeout"]
+[connection signal="timeout" from="LongIdleDelay" to="WizardStateMachine/WizardIdleState" method="_on_long_idle_delay_timeout"]

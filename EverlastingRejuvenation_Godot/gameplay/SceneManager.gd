@@ -7,11 +7,6 @@ func _ready() -> void:
 	PotionCrafting.connect("toggle_menu", toggle_crafting_menu);
 	load_scene();
 
-# Remove Me
-func _process(_delta: float) -> void:
-	pass;#if(Input.is_action_just_pressed("NextLevel")):
-	#	next_scene();
-
 func next_scene():
 	PotionCrafting.reset();
 	remove_child(get_node("Level" + str(level_id)));
@@ -22,8 +17,7 @@ func load_scene() -> void:
 	current_level = load("res://scenes/levels/Level" + str(level_id) + ".tscn");
 	var level_node : Level = current_level.instantiate();
 	level_node.connect("game_over", game_over);
-
-	# Handle Level Instructions
+	CollectibleHandler.reset();
 	get_node("HUD").visible = level_node.hud_active;
 	add_child(level_node);
 

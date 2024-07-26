@@ -4,7 +4,7 @@
 
 [node name="EntityPath" type="Path2D"]
 script = ExtResource("1_mdwdr")
-speed_px = 10.0
+speed_px = 25.0
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 v_offset = 8.0

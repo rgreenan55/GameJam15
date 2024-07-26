@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq2vlbxqyn1lm"
-path="res://.godot/imported/Lamppost-Sheet.png-ee808fc2d623304d359d7960c003be4c.ctex"
+uid="uid://bilpn4vurjxbe"
+path="res://.godot/imported/DefenseCannonSpriteSheet.png-2407764f4235b39805e64a2ce98ea7a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://environment/LampPost/Lamppost-Sheet.png"
-dest_files=["res://.godot/imported/Lamppost-Sheet.png-ee808fc2d623304d359d7960c003be4c.ctex"]
+source_file="res://entities/enemies/DefenseCannon/assets/DefenseCannonSpriteSheet.png"
+dest_files=["res://.godot/imported/DefenseCannonSpriteSheet.png-2407764f4235b39805e64a2ce98ea7a6.ctex"]
 
 [params]
 

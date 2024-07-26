@@ -10,6 +10,7 @@ size = Vector2(32, 32)
 radius = 0.01
 
 [node name="Ingredient" type="CharacterBody2D" groups=["IngredientUI"]]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_dhnvd")
 
 [node name="IngredientSprite" type="Sprite2D" parent="."]

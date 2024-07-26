@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://blqcqc7qf08jt"]
+
+[ext_resource type="Script" path="res://environment/Dangers/Spotlight/Spotlight.gd" id="1_4avjy"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/Dangers/LightSource/LightSource.tscn" id="1_ymr3r"]
+
+[sub_resource type="Gradient" id="Gradient_1kf5q"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_liulp"]
+gradient = SubResource("Gradient_1kf5q")
+width = 32
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4gg7"]
+size = Vector2(32, 7)
+
+[node name="Spotlight" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_4avjy")
+
+[node name="Visuals" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -16)
+
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+y_sort_enabled = true
+texture = SubResource("GradientTexture2D_liulp")
+
+[node name="Animations" type="AnimationPlayer" parent="Visuals"]
+
+[node name="LightSource" parent="Visuals" instance=ExtResource("1_ymr3r")]
+position = Vector2(60, 0)
+scale = Vector2(0.25, 0.25)
+is_extinguishable = false
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_y4gg7")

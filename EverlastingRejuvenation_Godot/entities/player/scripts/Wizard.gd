@@ -34,11 +34,15 @@ func hit_by_light() -> void:
 func exited_shadow() -> void:
 	number_of_shadows -= 1;
 	if (number_of_shadows == 0):
+		set_collision_layer_value(9, true);
+		set_collision_mask_value(3, true);
 		if (!life_bar_shown):
 			fade_in_life_bar();
 		out_of_shadow = true;
 
 func entered_shadow() -> void:
+	set_collision_layer_value(9, false);
+	set_collision_mask_value(3, false);
 	number_of_shadows += 1;
 	out_of_shadow = false;
 

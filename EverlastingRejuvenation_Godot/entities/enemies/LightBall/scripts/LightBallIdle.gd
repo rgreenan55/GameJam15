@@ -5,4 +5,4 @@ func Enter() -> void:
 		parent.get_node("Visuals/Animations").play_backwards("transition");
 		await parent.get_node("Visuals/Animations").animation_finished;
 	parent.get_node("Visuals/Animations").play("idle");
-	parent.get_node("Visuals/LightSource").force_extinguish();
+	parent.get_node("LightSource").force_extinguish();

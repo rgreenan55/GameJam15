@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq862sdoek6ya"]
+
+[ext_resource type="Texture2D" uid="uid://bilpn4vurjxbe" path="res://entities/enemies/DefenseCannon/assets/DefenseCannonSpriteSheet.png" id="1_k4s45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuvlw"]
+size = Vector2(10, 6)
+
+[sub_resource type="Animation" id="Animation_05ewr"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_apot4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d68up"]
+resource_name = "firing"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.7, 0.9, 1.1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r4s2h"]
+_data = {
+"RESET": SubResource("Animation_apot4"),
+"firing": SubResource("Animation_d68up"),
+"idle": SubResource("Animation_05ewr")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rymb"]
+radius = 5.0
+height = 20.0
+
+[node name="DefenseCannon" type="StaticBody2D"]
+collision_layer = 66
+collision_mask = 227
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_vuvlw")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_k4s45")
+offset = Vector2(0, -16)
+hframes = 3
+
+[node name="Animations" type="AnimationPlayer" parent="Visuals"]
+libraries = {
+"": SubResource("AnimationLibrary_r4s2h")
+}
+
+[node name="ExplosionHandler" type="Area2D" parent="."]
+position = Vector2(0, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionHandler"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_7rymb")

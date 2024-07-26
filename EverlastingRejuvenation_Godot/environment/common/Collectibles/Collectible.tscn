@@ -1,0 +1,157 @@
+[gd_scene load_steps=20 format=3 uid="uid://drinilxnsf6fd"]
+
+[ext_resource type="Script" path="res://environment/common/Collectibles/Collectible.gd" id="1_0ikqd"]
+[ext_resource type="Texture2D" uid="uid://dqgabl3ix0f1u" path="res://environment/common/Collectibles/CollectibleSpriteSheet.png" id="1_w5ivc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5nju"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrr87"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1clf6"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slaab"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_436rr"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr105"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hscl"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6sft"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy01k"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7m0d"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emyh5"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc5tj"]
+atlas = ExtResource("1_w5ivc")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtxom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5nju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrr87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1clf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slaab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_436rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr105")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hscl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6sft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy01k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7m0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emyh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc5tj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.5
+}]
+
+[sub_resource type="Gradient" id="Gradient_22c5y"]
+offsets = PackedFloat32Array(0, 0.34472)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vo5et"]
+gradient = SubResource("Gradient_22c5y")
+width = 30
+height = 30
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lmcy4"]
+radius = 5.0
+
+[sub_resource type="Curve" id="Curve_wqbqy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Collectible" type="Area2D" groups=["Collectible"]]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 256
+collision_mask = 32
+script = ExtResource("1_0ikqd")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_vtxom")
+autoplay = "default"
+frame_progress = 0.648529
+offset = Vector2(0, -20)
+
+[node name="Shadow" type="Sprite2D" parent="Sprite"]
+z_index = -1
+position = Vector2(0, 2)
+texture = SubResource("GradientTexture2D_vo5et")
+offset = Vector2(0, -2)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lmcy4")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -10)
+emitting = false
+amount = 25
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angular_velocity_max = 360.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_wqbqy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,16 +1,72 @@
-[gd_scene load_steps=12 format=3 uid="uid://d376huekjp3c2"]
+[gd_scene load_steps=21 format=3 uid="uid://pud3tu6jbafg"]
 
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/Knight.gd" id="1_3xhfj"]
-[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="1_m7m6f"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/Dangers/LightSource/LightSource.tscn" id="1_m7m6f"]
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="2_32vh7"]
 [ext_resource type="Texture2D" uid="uid://br60q375u24ne" path="res://entities/enemies/Knight/assets/KnightSpriteSheet.png" id="3_57ou3"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/IdleKnightState.gd" id="3_acefs"]
-[ext_resource type="Script" path="res://entities/enemies/Knight/scripts/AlertKnightState.gd" id="4_3qiir"]
+[ext_resource type="Texture2D" uid="uid://c8dkacu2qh0le" path="res://entities/enemies/Knight/assets/KnightIceCover.png" id="4_2jkyi"]
 [ext_resource type="Texture2D" uid="uid://u222kmlgjebf" path="res://entities/enemies/Knight/assets/Frog.png" id="4_k0eoq"]
+[ext_resource type="Script" path="res://entities/enemies/Knight/scripts/FrozenKnightState.gd" id="9_7crfc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wjrk"]
 radius = 0.5
 height = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xf0k"]
+atlas = ExtResource("4_2jkyi")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f48na"]
+atlas = ExtResource("4_2jkyi")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i74d1"]
+atlas = ExtResource("4_2jkyi")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdr1d"]
+atlas = ExtResource("4_2jkyi")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2mth"]
+atlas = ExtResource("4_2jkyi")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1667"]
+atlas = ExtResource("4_2jkyi")
+region = Rect2(0, 0, 47, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idlen"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xf0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f48na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i74d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdr1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2mth")
+}],
+"loop": false,
+"name": &"active",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1667")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_7rwty"]
 length = 0.001
@@ -25,6 +81,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1yclb"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
 }
 
 [sub_resource type="Animation" id="Animation_scu6j"]
@@ -48,12 +119,13 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_48crp"]
 _data = {
 "RESET": SubResource("Animation_7rwty"),
+"idle": SubResource("Animation_1yclb"),
 "walking": SubResource("Animation_scu6j")
 }
 
-[node name="Knight" type="CharacterBody2D" groups=["Enemy", "Polymorphable"]]
+[node name="Knight" type="CharacterBody2D" groups=["Enemy", "Explodable", "Freezable", "Polymorphable"]]
 collision_layer = 64
-collision_mask = 99
+collision_mask = 111
 script = ExtResource("1_3xhfj")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -64,16 +136,12 @@ shape = SubResource("CapsuleShape2D_8wjrk")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="LightSource" parent="Visuals" instance=ExtResource("1_m7m6f")]
-position = Vector2(0, -8)
-is_extinguishable = false
-
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
 modulate = Color(0.67451, 0.67451, 0.67451, 1)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_57ou3")
 offset = Vector2(0, -24)
-hframes = 8
+hframes = 9
 
 [node name="PolymorphSprite" type="Sprite2D" parent="Visuals"]
 visible = false
@@ -81,11 +149,21 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_k0eoq")
 offset = Vector2(0, -16)
 
+[node name="FreezeCoverSprite" type="AnimatedSprite2D" parent="Visuals"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_idlen")
+autoplay = "default"
+offset = Vector2(0, -24)
+
 [node name="Animations" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_48crp")
 }
+
+[node name="LightSource" parent="." instance=ExtResource("1_m7m6f")]
+is_extinguishable = false
+metadata/_edit_lock_ = true
 
 [node name="KnightStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_32vh7")
@@ -93,7 +171,16 @@ current_state = NodePath("IdleKnightState")
 
 [node name="IdleKnightState" type="Node" parent="KnightStateMachine"]
 script = ExtResource("3_acefs")
-animation_name = "walking"
 
-[node name="AlertKnightState" type="Node" parent="KnightStateMachine"]
-script = ExtResource("4_3qiir")
+[node name="MovementTimer" type="Timer" parent="KnightStateMachine/IdleKnightState"]
+wait_time = 4.0
+one_shot = true
+
+[node name="FrozenKnightState" type="Node" parent="KnightStateMachine"]
+script = ExtResource("9_7crfc")
+
+[node name="PolymorphTimer" type="Timer" parent="."]
+wait_time = 12.5
+
+[connection signal="timeout" from="KnightStateMachine/IdleKnightState/MovementTimer" to="KnightStateMachine/IdleKnightState" method="_on_movement_timer_timeout"]
+[connection signal="timeout" from="PolymorphTimer" to="." method="unpolymorph"]

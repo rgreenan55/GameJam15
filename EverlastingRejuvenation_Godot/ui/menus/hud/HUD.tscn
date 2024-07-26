@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cniagys5rwat6"]
+[gd_scene load_steps=8 format=3 uid="uid://cniagys5rwat6"]
 
 [ext_resource type="PackedScene" uid="uid://cmjst4b06xjbi" path="res://ui/menus/HUD/HotbarSlot.tscn" id="1_tp6w6"]
+[ext_resource type="Script" path="res://ui/menus/HUD/HUD.gd" id="1_vof7h"]
 [ext_resource type="Texture2D" uid="uid://ch8wl3sd5w5ah" path="res://ui/menus/HUD/assets/IngredientSack.png" id="2_epoeh"]
 [ext_resource type="Script" path="res://ui/menus/HUD/scripts/HUDPotionDisplay.gd" id="3_0uod3"]
 [ext_resource type="Texture2D" uid="uid://d1ttnm267ymwr" path="res://ui/menus/HUD/assets/TabButton.png" id="3_ejvlo"]
 [ext_resource type="Script" path="res://ui/menus/HUD/scripts/ThrowIndicator.gd" id="5_p5cwg"]
+[ext_resource type="Texture2D" uid="uid://bdhcvu6py383" path="res://ui/menus/HUD/assets/Collectible.png" id="6_bl4wd"]
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_vof7h")
 
 [node name="CraftingIcon" type="Control" parent="."]
 layout_mode = 3
@@ -68,3 +71,48 @@ show_percentage = false
 [node name="ThrowTimer" type="Timer" parent="HudPotionDisplayContainer/ThrowIndicator"]
 wait_time = 0.5
 one_shot = true
+
+[node name="InfoBox" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="CollectibleDisplay" type="Control" parent="InfoBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="InfoBox/CollectibleDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 7.0
+offset_right = -12.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+text = "0 / 0"
+horizontal_alignment = 2
+
+[node name="Sprite" type="Sprite2D" parent="InfoBox/CollectibleDisplay"]
+position = Vector2(22, 19)
+texture = ExtResource("6_bl4wd")
+
+[node name="TimerBox" type="Control" parent="InfoBox"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TimerLabel" type="Label" parent="InfoBox/TimerBox"]
+layout_mode = 2
+offset_left = -40.0
+offset_top = 28.0
+offset_right = 32.0
+offset_bottom = 52.0
+horizontal_alignment = 2

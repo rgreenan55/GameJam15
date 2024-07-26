@@ -14,3 +14,7 @@ func _on_line_of_sight_body_exited(body: Node2D) -> void:
 
 func _on_patience_timer_timeout() -> void:
 		state_machine.on_child_transitioned("LightBallIdle");
+
+func explode():
+	state_machine.on_child_transitioned("LightBallAlert");
+	patience_timer.start();

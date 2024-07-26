@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cwj23egyb2bfx"]
+
+[node name="SampleLevel" type="Node2D"]
+y_sort_enabled = true
+
+[node name="LevelDesign" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TileMap" type="TileMap" parent="LevelDesign"]
+format = 2
+
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" type="Node2D" parent="Entities"]
+y_sort_enabled = true
+
+[node name="Enemies" type="Node2D" parent="Entities"]
+y_sort_enabled = true
+
+[node name="Potions" type="Node2D" parent="Entities"]
+y_sort_enabled = true
+
+[node name="Collectibles" type="Node2D" parent="Entities"]
+y_sort_enabled = true
+
+[node name="Environment" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+
+[node name="VisualEffects" type="Node2D" parent="."]

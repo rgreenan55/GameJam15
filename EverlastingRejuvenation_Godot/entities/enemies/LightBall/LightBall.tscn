@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="1_h3voe"]
 [ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBall.gd" id="1_j6c65"]
 [ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBallIdle.gd" id="3_0x5mx"]
-[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/LightSource/LightSource.tscn" id="3_5k5pl"]
+[ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/Dangers/LightSource/LightSource.tscn" id="3_5k5pl"]
 [ext_resource type="Script" path="res://entities/enemies/LightBall/scripts/LightBallAlert.gd" id="4_4cch1"]
 
 [sub_resource type="Animation" id="Animation_7rxin"]
@@ -92,7 +92,7 @@ height = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0xvo"]
 radius = 60.0
 
-[node name="LightBall" type="CharacterBody2D"]
+[node name="LightBall" type="CharacterBody2D" groups=["Explodable"]]
 y_sort_enabled = true
 collision_layer = 64
 collision_mask = 103
@@ -100,10 +100,6 @@ script = ExtResource("1_j6c65")
 
 [node name="Visuals" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="LightSource" parent="Visuals" instance=ExtResource("3_5k5pl")]
-default_state = false
-is_extinguishable = false
 
 [node name="Sprite" type="Sprite2D" parent="Visuals"]
 y_sort_enabled = true
@@ -141,12 +137,19 @@ position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_14k6g")
 
+[node name="LightSource" parent="." instance=ExtResource("3_5k5pl")]
+position = Vector2(0, -2)
+default_state = false
+is_extinguishable = false
+metadata/_edit_lock_ = true
+
 [node name="LineOfSight" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 32
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LineOfSight"]
-position = Vector2(0, -4)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_e0xvo")
 
 [node name="PatienceTimer" type="Timer" parent="LineOfSight"]

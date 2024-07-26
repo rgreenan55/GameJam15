@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6vtgfltf3a4k"]
 
-[ext_resource type="Script" path="res://environment/LightSource/LightSource.gd" id="1_raovu"]
+[ext_resource type="Script" path="res://environment/Dangers/LightSource/LightSource.gd" id="1_raovu"]
 
 [sub_resource type="Gradient" id="Gradient_inb8g"]
-offsets = PackedFloat32Array(0.487578, 0.652174, 0.881988)
+offsets = PackedFloat32Array(0.487578, 0.652174, 0.73913)
 colors = PackedColorArray(1, 1, 1, 1, 0.630058, 0.630058, 0.630058, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s377l"]
@@ -22,7 +22,7 @@ frequency = 0.75
 noise = SubResource("FastNoiseLite_yk8up")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cyob"]
-radius = 70.0
+radius = 65.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lhm6"]
 
@@ -53,7 +53,7 @@ shape = SubResource("CircleShape2D_1lhm6")
 debug_color = Color(0.866667, 0.356863, 0, 0.0784314)
 
 [node name="Raycast" type="RayCast2D" parent="."]
-target_position = Vector2(70, 0)
+target_position = Vector2(65, 0)
 collision_mask = 4151
 
 [connection signal="area_entered" from="AreaOfEffect" to="." method="_on_area_of_effect_area_entered"]
