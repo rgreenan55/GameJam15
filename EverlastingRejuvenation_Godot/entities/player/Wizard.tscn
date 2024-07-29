@@ -193,7 +193,7 @@ _data = {
 radius = 150.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amf7w"]
-bg_color = Color(0.129412, 0.121569, 0.211765, 1)
+bg_color = Color(0.27451, 0.262745, 0.419608, 1)
 border_color = Color(1, 1, 1, 0.470588)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -218,6 +218,7 @@ shape = SubResource("CapsuleShape2D_2xcs7")
 
 [node name="Camera2D" type="Camera2D" parent="Visuals"]
 offset = Vector2(0, -8)
+position_smoothing_enabled = true
 
 [node name="WalkingParticles" type="CPUParticles2D" parent="Visuals"]
 position = Vector2(0, -3)
@@ -265,7 +266,7 @@ default_color = Color(1, 1, 1, 0.392157)
 [node name="ThrowRangeIndicator" type="Line2D" parent="PotionHandler"]
 z_index = -1
 closed = true
-width = 0.5
+width = 1.0
 default_color = Color(1, 1, 1, 0.156863)
 script = ExtResource("5_6rcqf")
 
@@ -277,6 +278,7 @@ one_shot = true
 
 [node name="ShadowLifeBar" type="ProgressBar" parent="ShadowHandler"]
 modulate = Color(1, 1, 1, 0)
+visibility_layer = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -291,6 +293,10 @@ grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_amf7w")
 value = 100.0
 show_percentage = false
+
+[node name="LongIdleDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [node name="WizardStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_u3o3x")
@@ -311,11 +317,6 @@ animation_name = "crafting_start"
 [node name="WizardDyingState" type="Node" parent="WizardStateMachine"]
 script = ExtResource("6_koe07")
 animation_name = "dying"
-
-[node name="LongIdleDelay" type="Timer" parent="."]
-process_priority = 1
-wait_time = 5.0
-one_shot = true
 
 [connection signal="input_event" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_input_event"]
 [connection signal="mouse_entered" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]

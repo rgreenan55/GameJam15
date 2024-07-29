@@ -1,0 +1,334 @@
+[gd_scene load_steps=26 format=3 uid="uid://dxq8ityqefb8h"]
+
+[ext_resource type="Script" path="res://entities/player/scripts/Wizard.gd" id="1_ee4lp"]
+[ext_resource type="Texture2D" uid="uid://7srofhdscsny" path="res://entities/player/assets/WizardSpriteSheet32.png" id="2_smk31"]
+[ext_resource type="Script" path="res://entities/player/scripts/PotionHandler.gd" id="3_8fp7v"]
+[ext_resource type="Script" path="res://entities/common/StateMachine.gd" id="3_u3o3x"]
+[ext_resource type="Script" path="res://entities/player/scripts/WizardIdleState.gd" id="4_gpqla"]
+[ext_resource type="PackedScene" uid="uid://ptgedtdlu4ej" path="res://entities/potions/Potion.tscn" id="4_ree82"]
+[ext_resource type="Script" path="res://entities/player/scripts/ThrowRangeIndicator.gd" id="5_6rcqf"]
+[ext_resource type="Script" path="res://entities/player/scripts/WizardWalkingState.gd" id="5_nupd3"]
+[ext_resource type="Script" path="res://entities/player/scripts/WizardDyingState.gd" id="6_koe07"]
+[ext_resource type="Script" path="res://entities/player/scripts/WizardCraftingState.gd" id="10_fieh4"]
+[ext_resource type="Script" path="res://entities/player/FogOfWar.gd" id="11_djkiq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xcs7"]
+radius = 1.0
+height = 6.0
+
+[sub_resource type="Curve" id="Curve_e31wg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_14bpr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qd7fv"]
+resource_name = "crafting_loop"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [60, 61]
+}
+
+[sub_resource type="Animation" id="Animation_nurlm"]
+resource_name = "crafting_start"
+length = 1.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [52, 53, 54, 55, 56, 57, 58, 59]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Animations:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"crafting_loop"]
+}
+
+[sub_resource type="Animation" id="Animation_j6ovc"]
+resource_name = "dying"
+length = 2.5
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+}
+
+[sub_resource type="Animation" id="Animation_nwbfi"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_s42ku"]
+resource_name = "long_idle_loop"
+length = 3.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.4, 2.8, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [29, 30, 31, 32, 34, 35, 36, 37, 38]
+}
+
+[sub_resource type="Animation" id="Animation_g7vpc"]
+resource_name = "long_idle_start"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [26, 27, 28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Animations:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"long_idle_loop"]
+}
+
+[sub_resource type="Animation" id="Animation_yotiy"]
+resource_name = "walking"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkimf"]
+_data = {
+"RESET": SubResource("Animation_14bpr"),
+"crafting_loop": SubResource("Animation_qd7fv"),
+"crafting_start": SubResource("Animation_nurlm"),
+"dying": SubResource("Animation_j6ovc"),
+"idle": SubResource("Animation_nwbfi"),
+"long_idle_loop": SubResource("Animation_s42ku"),
+"long_idle_start": SubResource("Animation_g7vpc"),
+"walking": SubResource("Animation_yotiy")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrv5a"]
+radius = 150.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amf7w"]
+bg_color = Color(0.129412, 0.121569, 0.211765, 1)
+border_color = Color(1, 1, 1, 0.470588)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+anti_aliasing_size = 0.5
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8u8to"]
+blend_mode = 3
+
+[node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
+y_sort_enabled = true
+collision_layer = 288
+collision_mask = 1367
+script = ExtResource("1_ee4lp")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2xcs7")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Visuals"]
+offset = Vector2(0, -8)
+
+[node name="WalkingParticles" type="CPUParticles2D" parent="Visuals"]
+position = Vector2(0, -3)
+amount = 3
+lifetime = 0.25
+gravity = Vector2(0, -20)
+angle_max = 90.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_e31wg")
+color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[node name="Sprite" type="Sprite2D" parent="Visuals"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_smk31")
+offset = Vector2(-1, -16)
+hframes = 13
+vframes = 5
+
+[node name="Animations" type="AnimationPlayer" parent="Visuals"]
+root_node = NodePath("../Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_mkimf")
+}
+
+[node name="PotionHandler" type="Node2D" parent="."]
+script = ExtResource("3_8fp7v")
+potion_scene = ExtResource("4_ree82")
+
+[node name="PotionThrowArea" type="Area2D" parent="PotionHandler"]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="PotionThrowRange" type="CollisionShape2D" parent="PotionHandler/PotionThrowArea"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_mrv5a")
+debug_color = Color(0, 0, 0.701961, 0.0196078)
+
+[node name="ThrowLine" type="Line2D" parent="PotionHandler"]
+z_index = 9
+z_as_relative = false
+width = 0.5
+default_color = Color(1, 1, 1, 0.392157)
+
+[node name="ThrowRangeIndicator" type="Line2D" parent="PotionHandler"]
+z_index = -1
+closed = true
+width = 0.5
+default_color = Color(1, 1, 1, 0.156863)
+script = ExtResource("5_6rcqf")
+
+[node name="ThrowDelay" type="Timer" parent="PotionHandler"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShadowHandler" type="Node2D" parent="."]
+
+[node name="ShadowLifeBar" type="ProgressBar" parent="ShadowHandler"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -22.0
+offset_right = 8.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_amf7w")
+value = 100.0
+show_percentage = false
+
+[node name="WizardStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_u3o3x")
+current_state = NodePath("WizardWalkingState")
+
+[node name="WizardIdleState" type="Node" parent="WizardStateMachine"]
+script = ExtResource("4_gpqla")
+animation_name = "idle"
+
+[node name="WizardWalkingState" type="Node" parent="WizardStateMachine"]
+script = ExtResource("5_nupd3")
+animation_name = "walking"
+
+[node name="WizardCraftingState" type="Node" parent="WizardStateMachine"]
+script = ExtResource("10_fieh4")
+animation_name = "crafting_start"
+
+[node name="WizardDyingState" type="Node" parent="WizardStateMachine"]
+script = ExtResource("6_koe07")
+animation_name = "dying"
+
+[node name="LongIdleDelay" type="Timer" parent="."]
+process_priority = 1
+wait_time = 5.0
+one_shot = true
+
+[node name="FogOfWar" type="Node2D" parent="."]
+script = ExtResource("11_djkiq")
+
+[node name="Fog" type="Sprite2D" parent="FogOfWar"]
+material = SubResource("CanvasItemMaterial_8u8to")
+
+[connection signal="input_event" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_input_event"]
+[connection signal="mouse_entered" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]
+[connection signal="mouse_exited" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_exited"]
+[connection signal="timeout" from="PotionHandler/ThrowDelay" to="PotionHandler" method="_on_throw_delay_timeout"]
+[connection signal="timeout" from="LongIdleDelay" to="WizardStateMachine/WizardIdleState" method="_on_long_idle_delay_timeout"]

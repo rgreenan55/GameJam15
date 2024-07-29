@@ -18,6 +18,7 @@ var potion_types : Array[PackedScene] = [
 var i : int = 0;
 
 func _ready() -> void:
+	CollectibleHandler.connect("current_changed", check_exit);
 	initiate_player();
 	initiate_collectibles();
 
@@ -42,3 +43,6 @@ func initiate_player() -> void:
 
 func initiate_collectibles() -> void:
 	CollectibleHandler.set_total(get_tree().get_nodes_in_group("Collectible").size());
+
+func check_exit(val : int, total : int) -> void:
+	if (total != 0 && val >= total): get_node("ExitArea").enable();

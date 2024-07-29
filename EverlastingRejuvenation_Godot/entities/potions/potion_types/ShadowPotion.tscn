@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccj454ue7rxso"]
+[gd_scene load_steps=2 format=3 uid="uid://ccj454ue7rxso"]
 
 [ext_resource type="Script" path="res://entities/potions/potion_types/scripts/ShadowPotion.gd" id="1_3iq06"]
-[ext_resource type="Texture2D" uid="uid://comdqr61cqljf" path="res://entities/potions/potion_types/assets/ShadowPotion.png" id="2_m08v1"]
 
 [node name="ShadowPotion" type="Node"]
 script = ExtResource("1_3iq06")
-display_sprite = ExtResource("2_m08v1")
 group_check = "Extinguishable"
 secondary_color = Color(1, 1, 1, 1)

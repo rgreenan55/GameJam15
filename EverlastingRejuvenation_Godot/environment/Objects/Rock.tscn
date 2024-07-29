@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bodthulvgfwot"]
+
+[ext_resource type="Script" path="res://environment/Objects/scripts/Rock.gd" id="1_j4mro"]
+[ext_resource type="Texture2D" uid="uid://donxdepmryim7" path="res://environment/Objects/assets/Rocks.png" id="2_e1slr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgck2"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qn6kt"]
+polygon = PackedVector2Array(-8, -3, -6, 0, 6, 0, 8, -3, 6, -6, -6, -6)
+
+[node name="Rock" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_j4mro")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_e1slr")
+offset = Vector2(0, -8)
+hframes = 3
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rgck2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_qn6kt")

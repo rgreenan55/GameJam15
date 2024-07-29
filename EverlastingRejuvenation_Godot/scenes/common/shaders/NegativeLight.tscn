@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b1bkr2nhd21nr"]
+
+[node name="NegativeLight" type="DirectionalLight2D"]
+energy = 0.25
+blend_mode = 1
+shadow_color = Color(0, 0, 0, 1)

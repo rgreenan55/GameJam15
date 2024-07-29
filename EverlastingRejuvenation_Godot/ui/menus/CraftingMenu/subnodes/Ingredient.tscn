@@ -11,6 +11,8 @@ radius = 0.01
 
 [node name="Ingredient" type="CharacterBody2D" groups=["IngredientUI"]]
 scale = Vector2(0.75, 0.75)
+collision_layer = 32768
+collision_mask = 0
 script = ExtResource("1_dhnvd")
 
 [node name="IngredientSprite" type="Sprite2D" parent="."]

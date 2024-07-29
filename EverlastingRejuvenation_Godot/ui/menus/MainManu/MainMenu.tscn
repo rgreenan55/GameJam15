@@ -45,7 +45,7 @@ theme_override_constants/separation = 96
 
 [node name="TitleLabel" type="Label" parent="ControlLayer/MarginContainer/VerticalContainer"]
 layout_mode = 2
-text = "Some Title Idk"
+text = "The Quest for Everlasting Rejuvenation "
 label_settings = SubResource("LabelSettings_c3soq")
 
 [node name="HorizontalContainer" type="HBoxContainer" parent="ControlLayer/MarginContainer/VerticalContainer"]

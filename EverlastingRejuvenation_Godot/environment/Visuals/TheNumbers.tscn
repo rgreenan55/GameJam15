@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs48dwfq7gcx1"]
+
+[ext_resource type="Texture2D" uid="uid://cl2p6ok2npe5" path="res://environment/Visuals/assets/TheNumbers.png" id="1_q8t2i"]
+
+[node name="TheNumbers" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.294118)
+texture = ExtResource("1_q8t2i")

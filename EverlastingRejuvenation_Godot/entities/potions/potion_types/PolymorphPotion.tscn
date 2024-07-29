@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://5lq2rwe8ptjk"]
+[gd_scene load_steps=2 format=3 uid="uid://5lq2rwe8ptjk"]
 
 [ext_resource type="Script" path="res://entities/potions/potion_types/scripts/PolymorphPotion.gd" id="1_kc6it"]
-[ext_resource type="Texture2D" uid="uid://bsuv2bsueuhfl" path="res://entities/potions/potion_types/assets/PolymorphPotion.png" id="2_gbaes"]
 
 [node name="PolymorphPotion" type="Node"]
 script = ExtResource("1_kc6it")
-display_sprite = ExtResource("2_gbaes")
 group_check = "Polymorphable"
 primary_color = Color(1, 0.643137, 1, 1)
 secondary_color = Color(0, 1, 0.517647, 1)
