@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvy0bb1kd1bpy"]
+
+[ext_resource type="Script" path="res://entities/potions/potion_types/scripts/DLCPotion.gd" id="1_18xgu"]
+
+[node name="DLCPotion" type="Node"]
+script = ExtResource("1_18xgu")
+sprite = "\"res://entities/potions/potion_types/assets/DLCPotion.png\""
+primary_color = Color(1, 1, 1, 1)
+secondary_color = Color(0.741176, 0.741176, 0.741176, 1)

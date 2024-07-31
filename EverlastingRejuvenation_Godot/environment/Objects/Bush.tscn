@@ -12,6 +12,7 @@ polygon = PackedVector2Array(-8, -3, -6, 0, 6, 0, 8, -3, 6, -6, -6, -6)
 [node name="Bush" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.533333, 0.533333, 0.533333, 1)
 texture = ExtResource("1_h2qw0")
 offset = Vector2(0, -8)
 

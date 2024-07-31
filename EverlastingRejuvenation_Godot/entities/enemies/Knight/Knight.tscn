@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://pud3tu6jbafg"]
+[gd_scene load_steps=22 format=3 uid="uid://pud3tu6jbafg"]
 
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/Knight.gd" id="1_3xhfj"]
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/Dangers/LightSource/LightSource.tscn" id="1_m7m6f"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dkacu2qh0le" path="res://entities/enemies/Knight/assets/KnightIceCover.png" id="4_2jkyi"]
 [ext_resource type="Texture2D" uid="uid://u222kmlgjebf" path="res://entities/enemies/Knight/assets/Frog.png" id="4_k0eoq"]
 [ext_resource type="Script" path="res://entities/enemies/Knight/scripts/FrozenKnightState.gd" id="9_7crfc"]
+[ext_resource type="AudioStream" uid="uid://d1qukduw2psdt" path="res://assets/audio/sound/knight_walking.mp3" id="9_bwb3q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wjrk"]
 radius = 0.5
@@ -181,6 +182,11 @@ script = ExtResource("9_7crfc")
 
 [node name="PolymorphTimer" type="Timer" parent="."]
 wait_time = 12.5
+
+[node name="WalkingAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_bwb3q")
+autoplay = true
+max_distance = 600.0
 
 [connection signal="timeout" from="KnightStateMachine/IdleKnightState/MovementTimer" to="KnightStateMachine/IdleKnightState" method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="PolymorphTimer" to="." method="unpolymorph"]

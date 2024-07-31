@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://btd23m8n5bmwq"]
+[gd_scene load_steps=6 format=3 uid="uid://btd23m8n5bmwq"]
 
 [ext_resource type="Script" path="res://gameplay/SceneManager.gd" id="1_v7pjo"]
 [ext_resource type="PackedScene" uid="uid://cbqykrdxy18va" path="res://ui/menus/CraftingMenu/CraftingMenu.tscn" id="2_3xode"]
+[ext_resource type="PackedScene" uid="uid://ddplbcjyilqql" path="res://scenes/levels/OpeningCutscene.tscn" id="2_rydje"]
 [ext_resource type="PackedScene" uid="uid://6hi2iiwkcpkb" path="res://ui/menus/GameOver/GameOverMenu.tscn" id="3_0lubn"]
 [ext_resource type="PackedScene" uid="uid://cniagys5rwat6" path="res://ui/menus/HUD/HUD.tscn" id="3_s22ck"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_v7pjo")
+current_scene = ExtResource("2_rydje")
 
 [node name="CraftingMenu" parent="." instance=ExtResource("2_3xode")]
 visible = false

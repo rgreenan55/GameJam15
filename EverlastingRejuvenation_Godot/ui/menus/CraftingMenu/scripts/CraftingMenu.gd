@@ -16,6 +16,7 @@ func _on_mix_button_pressed() -> void:
 	# Add Potion to Queue.
 	ingredients.sort();
 	PotionCrafting.craft_potion(ingredients[0], ingredients[1]);
+	get_node("MixAudio").playing = true;
 
 func _ingredient_added() -> void:
 	ingredient_count += 1;

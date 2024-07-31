@@ -1,11 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://3wu6ynq5ddvy"]
+[gd_scene load_steps=14 format=3 uid="uid://3wu6ynq5ddvy"]
 
-[ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_8mm8w"]
+[ext_resource type="Script" path="res://scenes/levels/scripts/Level.gd" id="1_pa8uu"]
 [ext_resource type="TileSet" uid="uid://3vwd28bf3rkd" path="res://scenes/common/tilesets/Tileset.tres" id="2_7bsej"]
+[ext_resource type="PackedScene" uid="uid://b8m8vh2fsahej" path="res://scenes/levels/Level2.tscn" id="2_17i3a"]
 [ext_resource type="PackedScene" uid="uid://caj5xclr1otl7" path="res://environment/Utilities/ShadowArea/ShadowArea.tscn" id="3_iidsn"]
 [ext_resource type="PackedScene" uid="uid://7ixewwco6ywj" path="res://scenes/common/ExitArea.tscn" id="3_m435x"]
 [ext_resource type="PackedScene" uid="uid://drinilxnsf6fd" path="res://environment/common/Collectibles/Collectible.tscn" id="4_e5q51"]
 [ext_resource type="PackedScene" uid="uid://pk32boqhd2py" path="res://environment/Dangers/LampPost/Lamppost.tscn" id="6_c0f0c"]
+[ext_resource type="AudioStream" uid="uid://bsqy8v0cbvkt4" path="res://assets/audio/music/GameSong3.mp3" id="8_fmm77"]
+[ext_resource type="PackedScene" uid="uid://bqoj10ce35vcb" path="res://environment/Objects/Tree.tscn" id="9_l26rk"]
+[ext_resource type="PackedScene" uid="uid://cf6btn42i2dnq" path="res://environment/Objects/Bush.tscn" id="10_krq11"]
+[ext_resource type="PackedScene" uid="uid://bodthulvgfwot" path="res://environment/Objects/Rock.tscn" id="11_jj00v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kkga"]
 size = Vector2(48, 32)
@@ -15,8 +20,9 @@ size = Vector2(64, 32)
 
 [node name="Level1" type="Node2D" groups=["Level"]]
 y_sort_enabled = true
-script = ExtResource("1_8mm8w")
+script = ExtResource("1_pa8uu")
 spawn_position = Vector2(32, 72)
+next_scene = ExtResource("2_17i3a")
 
 [node name="LevelDesign" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -39,12 +45,14 @@ layer_1/tile_data = PackedInt32Array(-65491, 131072, 1, -131027, 131072, 2, -196
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea"]
 position = Vector2(32, 72)
 shape = SubResource("RectangleShape2D_1kkga")
+debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 
 [node name="ShadowArea2" parent="LevelDesign/ShadowAreas" instance=ExtResource("3_iidsn")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea2"]
 position = Vector2(376, 72)
 shape = SubResource("RectangleShape2D_rtgnr")
+debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 
 [node name="Entities" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -75,7 +83,37 @@ y_sort_enabled = true
 [node name="Lamppost" parent="Environment" instance=ExtResource("6_c0f0c")]
 position = Vector2(248, 72)
 
+[node name="Tree" parent="Environment" instance=ExtResource("9_l26rk")]
+position = Vector2(83, 30)
+
+[node name="Tree2" parent="Environment" instance=ExtResource("9_l26rk")]
+position = Vector2(442, 32)
+
+[node name="Tree3" parent="Environment" instance=ExtResource("9_l26rk")]
+position = Vector2(117, 123)
+
+[node name="Tree4" parent="Environment" instance=ExtResource("9_l26rk")]
+position = Vector2(572, 131)
+
+[node name="Bush" parent="Environment" instance=ExtResource("10_krq11")]
+position = Vector2(338, 133)
+
+[node name="Bush2" parent="Environment" instance=ExtResource("10_krq11")]
+position = Vector2(347, 24)
+
+[node name="Bush3" parent="Environment" instance=ExtResource("10_krq11")]
+position = Vector2(50, 119)
+
+[node name="Rock" parent="Environment" instance=ExtResource("11_jj00v")]
+position = Vector2(622, 23)
+
 [node name="VisualEffects" type="Node2D" parent="."]
 
 [node name="ExitArea" parent="." instance=ExtResource("3_m435x")]
 position = Vector2(608, 72)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_fmm77")
+volume_db = -15.0
+pitch_scale = 0.95
+autoplay = true

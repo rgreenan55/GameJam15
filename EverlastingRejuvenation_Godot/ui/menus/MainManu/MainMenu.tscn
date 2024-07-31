@@ -45,7 +45,7 @@ theme_override_constants/separation = 96
 
 [node name="TitleLabel" type="Label" parent="ControlLayer/MarginContainer/VerticalContainer"]
 layout_mode = 2
-text = "The Quest for Everlasting Rejuvenation "
+text = "The Quest for Everlasting Rejuvenation"
 label_settings = SubResource("LabelSettings_c3soq")
 
 [node name="HorizontalContainer" type="HBoxContainer" parent="ControlLayer/MarginContainer/VerticalContainer"]
@@ -70,6 +70,20 @@ size_flags_horizontal = 3
 [node name="Texture" type="TextureRect" parent="ControlLayer/MarginContainer/VerticalContainer/HorizontalContainer/VisualContainer"]
 visible = false
 layout_mode = 2
+
+[node name="Label" type="Label" parent="ControlLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -31.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Boebi_G"
 
 [connection signal="pressed" from="ControlLayer/MarginContainer/VerticalContainer/HorizontalContainer/ButtonContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="ControlLayer/MarginContainer/VerticalContainer/HorizontalContainer/ButtonContainer/QuitGame" to="." method="_on_quit_game_pressed"]

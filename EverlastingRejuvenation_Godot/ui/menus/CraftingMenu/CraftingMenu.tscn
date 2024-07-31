@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbqykrdxy18va"]
+[gd_scene load_steps=8 format=3 uid="uid://cbqykrdxy18va"]
 
 [ext_resource type="Texture2D" uid="uid://c44ox2gdbw3ch" path="res://ui/menus/CraftingMenu/assets/CraftingMenu.png" id="1_3n6rx"]
 [ext_resource type="PackedScene" uid="uid://puuhou3vf11u" path="res://ui/menus/CraftingMenu/subnodes/Ingredient.tscn" id="1_8prw0"]
 [ext_resource type="Script" path="res://ui/menus/CraftingMenu/scripts/CraftingMenu.gd" id="1_tfgje"]
 [ext_resource type="PackedScene" uid="uid://dpxlrqdys1uey" path="res://ui/menus/CraftingMenu/subnodes/IngredientSlot.tscn" id="3_67fb5"]
+[ext_resource type="AudioStream" uid="uid://by62kb3eln3t0" path="res://assets/audio/sound/pouring.mp3" id="5_14lqf"]
 
 [sub_resource type="Gradient" id="Gradient_c2n8l"]
 offsets = PackedFloat32Array(0.475155)
@@ -68,6 +69,10 @@ grow_horizontal = 2
 grow_vertical = 2
 disabled = true
 text = "Mix"
+
+[node name="MixAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_14lqf")
+volume_db = -5.0
 
 [connection signal="ingredient_added" from="IngredientSlots/IngredientSlot1" to="." method="_ingredient_added"]
 [connection signal="ingredient_removed" from="IngredientSlots/IngredientSlot1" to="." method="_ingredient_removed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://pk32boqhd2py"]
+[gd_scene load_steps=15 format=3 uid="uid://pk32boqhd2py"]
 
 [ext_resource type="Script" path="res://environment/Dangers/LampPost/Lamppost.gd" id="1_bcocc"]
 [ext_resource type="Texture2D" uid="uid://cq2vlbxqyn1lm" path="res://environment/Dangers/LampPost/Lamppost-Sheet.png" id="1_r2d7l"]
 [ext_resource type="PackedScene" uid="uid://c6vtgfltf3a4k" path="res://environment/Dangers/LightSource/LightSource.tscn" id="2_23p1m"]
+[ext_resource type="AudioStream" uid="uid://d1y7y3k2t4def" path="res://assets/audio/sound/fire.mp3" id="4_osm3q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu3ui"]
 atlas = ExtResource("1_r2d7l")
@@ -99,3 +100,8 @@ shape = SubResource("CircleShape2D_fyxs3")
 
 [node name="LightSource" parent="." instance=ExtResource("2_23p1m")]
 position = Vector2(0, -5)
+
+[node name="FireNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_osm3q")
+autoplay = true
+max_distance = 500.0

@@ -14,6 +14,7 @@ func Enter() -> void:
 	get_node("Timer").start();
 	parent.add_child(potion_area);
 	parent.type.perform_on_landing(parent);
+	parent.get_node("BottleBreak").playing = true;
 
 func apply_effect(node) -> void:
 	if (node.is_in_group(parent.type.group_check)):

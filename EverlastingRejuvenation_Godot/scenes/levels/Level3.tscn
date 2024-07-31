@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqcga6u8y04yg"]
+[gd_scene load_steps=15 format=3 uid="uid://dqcga6u8y04yg"]
 
-[ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_jgp7c"]
+[ext_resource type="Script" path="res://scenes/levels/scripts/Level.gd" id="1_jgp7c"]
 [ext_resource type="TileSet" uid="uid://3vwd28bf3rkd" path="res://scenes/common/tilesets/Tileset.tres" id="2_22uyr"]
+[ext_resource type="PackedScene" uid="uid://ctxh7qghh05ph" path="res://scenes/levels/Level4.tscn" id="2_gbuqf"]
 [ext_resource type="PackedScene" uid="uid://ddc5iwpg6lrvc" path="res://scenes/common/shaders/FogShader.tscn" id="2_v12yl"]
 [ext_resource type="PackedScene" uid="uid://b1bkr2nhd21nr" path="res://scenes/common/shaders/NegativeLight.tscn" id="3_a4ci7"]
 [ext_resource type="PackedScene" uid="uid://caj5xclr1otl7" path="res://environment/Utilities/ShadowArea/ShadowArea.tscn" id="3_ridln"]
@@ -9,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://7ixewwco6ywj" path="res://scenes/common/ExitArea.tscn" id="5_8qebq"]
 [ext_resource type="PackedScene" uid="uid://6kojr136venq" path="res://entities/enemies/AnimatedTorch/AnimatedTorch.tscn" id="5_uks4i"]
 [ext_resource type="PackedScene" uid="uid://drinilxnsf6fd" path="res://environment/common/Collectibles/Collectible.tscn" id="6_2ablg"]
+[ext_resource type="PackedScene" uid="uid://bqoj10ce35vcb" path="res://environment/Objects/Tree.tscn" id="8_6jxe1"]
+[ext_resource type="AudioStream" uid="uid://bsqy8v0cbvkt4" path="res://assets/audio/music/GameSong3.mp3" id="11_gi7gq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0qxp"]
 size = Vector2(64, 48)
@@ -22,6 +25,7 @@ point_count = 14
 [node name="Level3" type="Node2D" groups=["Level"]]
 y_sort_enabled = true
 script = ExtResource("1_jgp7c")
+next_scene = ExtResource("2_gbuqf")
 spawn_position = Vector2(32, 72)
 
 [node name="LevelDesign" type="Node2D" parent="."]
@@ -45,6 +49,7 @@ layer_1/tile_data = PackedInt32Array(-65491, 131072, 1, -131027, 131072, 2, -196
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDesign/ShadowAreas/ShadowArea"]
 position = Vector2(32, 72)
 shape = SubResource("RectangleShape2D_v0qxp")
+debug_color = Color(0.403922, 0.00392157, 0.835294, 0.196078)
 
 [node name="Blockers" type="Node2D" parent="LevelDesign"]
 
@@ -58,6 +63,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="EntityPath" parent="Entities/Enemies" instance=ExtResource("4_ctttg")]
+y_sort_enabled = true
 curve = SubResource("Curve2D_xgvtq")
 path_entity_scene = ExtResource("5_uks4i")
 
@@ -79,6 +85,18 @@ y_sort_enabled = true
 [node name="Objects" type="Node2D" parent="Environment"]
 y_sort_enabled = true
 
+[node name="Tree" parent="Environment/Objects" instance=ExtResource("8_6jxe1")]
+position = Vector2(188, 27)
+
+[node name="Tree2" parent="Environment/Objects" instance=ExtResource("8_6jxe1")]
+position = Vector2(116, 120)
+
+[node name="Tree3" parent="Environment/Objects" instance=ExtResource("8_6jxe1")]
+position = Vector2(34, 26)
+
+[node name="Tree4" parent="Environment/Objects" instance=ExtResource("8_6jxe1")]
+position = Vector2(643, 24)
+
 [node name="VisualEffects" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -92,3 +110,9 @@ position = Vector2(656, 72)
 
 [node name="Collectible" parent="." instance=ExtResource("6_2ablg")]
 position = Vector2(613, 78)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_gi7gq")
+volume_db = -15.0
+pitch_scale = 0.95
+autoplay = true

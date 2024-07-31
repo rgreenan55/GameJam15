@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://drinilxnsf6fd"]
+[gd_scene load_steps=21 format=3 uid="uid://drinilxnsf6fd"]
 
 [ext_resource type="Script" path="res://environment/common/Collectibles/Collectible.gd" id="1_0ikqd"]
 [ext_resource type="Texture2D" uid="uid://dqgabl3ix0f1u" path="res://environment/common/Collectibles/CollectibleSpriteSheet.png" id="1_w5ivc"]
+[ext_resource type="AudioStream" uid="uid://s1m5i2tg1vxp" path="res://assets/audio/sound/collectible.mp3" id="3_qu3j1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5nju"]
 atlas = ExtResource("1_w5ivc")
@@ -154,5 +155,9 @@ initial_velocity_max = 50.0
 angular_velocity_max = 360.0
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_wqbqy")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qu3j1")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

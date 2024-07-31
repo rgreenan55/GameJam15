@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuhl1t6k14jqu"]
+
+[ext_resource type="Script" path="res://scenes/levels/scripts/ClosingCutscene.gd" id="1_0tjo3"]
+[ext_resource type="Texture2D" uid="uid://0d5nnrlnfdow" path="res://scenes/levels/Coffee.png" id="2_ksv76"]
+
+[node name="ClosingCutscene" type="Node2D"]
+script = ExtResource("1_0tjo3")
+hud_active = false
+crafting_active = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[node name="SkipButton" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.588235)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -40.0
+offset_right = -8.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Skip"
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+position = Vector2(320, 180)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="NextLineTimer" type="Timer" parent="CanvasLayer"]
+wait_time = 4.5
+one_shot = true
+
+[node name="Coffee" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(320, 180)
+scale = Vector2(3, 3)
+texture = ExtResource("2_ksv76")
+
+[node name="CoffeeText" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 70.0
+offset_right = 32.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Coffee
+"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[connection signal="pressed" from="CanvasLayer/SkipButton" to="." method="goto_next_scene"]
+[connection signal="timeout" from="CanvasLayer/NextLineTimer" to="." method="next_line"]

@@ -19,7 +19,7 @@ var graph : Dictionary = {
 		4: "ShadowPotion",
 	},
 	3: {
-		4: "WaterPotion",
+		4: "DLCPotion",
 	},
 }
 

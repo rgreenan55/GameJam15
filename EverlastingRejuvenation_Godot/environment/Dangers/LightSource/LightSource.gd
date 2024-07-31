@@ -37,6 +37,7 @@ func extinguish() -> void:
 		get_node("AreaOfEffect").set_deferred("monitorable", false);
 		get_node("AreaOfEffect/AreaOfCollision").set_deferred("disabled", true);
 		get_node("Raycast").set_deferred("enabled", false);
+		get_node("ExtinguishSound").playing = true;
 		self.enabled = false;
 	# Call Parent Specific Extinguish - For Sprite Changes etc.
 	if (get_parent().has_method("extinguish")):

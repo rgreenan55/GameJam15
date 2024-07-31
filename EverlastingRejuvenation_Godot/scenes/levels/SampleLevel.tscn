@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwj23egyb2bfx"]
 
-[ext_resource type="Script" path="res://scenes/levels/Level.gd" id="1_2i88d"]
+[ext_resource type="Script" path="res://scenes/levels/scripts/Level.gd" id="1_2i88d"]
 [ext_resource type="PackedScene" uid="uid://ddc5iwpg6lrvc" path="res://scenes/common/shaders/FogShader.tscn" id="2_2wned"]
 [ext_resource type="PackedScene" uid="uid://b1bkr2nhd21nr" path="res://scenes/common/shaders/NegativeLight.tscn" id="3_qmo0b"]
 

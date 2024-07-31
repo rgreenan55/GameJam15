@@ -21,3 +21,4 @@ func _on_movement_timer_timeout() -> void:
 		get_node("MovementTimer").start(1);
 	else:
 		get_node("MovementTimer").start(4);
+

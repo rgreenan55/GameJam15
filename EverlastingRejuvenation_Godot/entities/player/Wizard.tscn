@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxq8ityqefb8h"]
+[gd_scene load_steps=27 format=3 uid="uid://dxq8ityqefb8h"]
 
 [ext_resource type="Script" path="res://entities/player/scripts/Wizard.gd" id="1_ee4lp"]
 [ext_resource type="Texture2D" uid="uid://7srofhdscsny" path="res://entities/player/assets/WizardSpriteSheet32.png" id="2_smk31"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://entities/player/scripts/WizardWalkingState.gd" id="5_nupd3"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardDyingState.gd" id="6_koe07"]
 [ext_resource type="Script" path="res://entities/player/scripts/WizardCraftingState.gd" id="10_fieh4"]
+[ext_resource type="AudioStream" uid="uid://d2r0658lc7fw1" path="res://assets/audio/sound/death.mp3" id="11_uwa87"]
+[ext_resource type="AudioStream" uid="uid://bbpi52wy5t7e1" path="res://assets/audio/sound/death_special.mp3" id="12_ri58r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xcs7"]
 radius = 1.0
@@ -202,6 +204,14 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 anti_aliasing_size = 0.5
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ft4pp"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("11_uwa87")
+stream_0/weight = 2.0
+stream_1/stream = ExtResource("12_ri58r")
+stream_1/weight = 0.25
+
 [node name="Wizard" type="CharacterBody2D" groups=["Entity", "Player"]]
 y_sort_enabled = true
 collision_layer = 288
@@ -317,6 +327,11 @@ animation_name = "crafting_start"
 [node name="WizardDyingState" type="Node" parent="WizardStateMachine"]
 script = ExtResource("6_koe07")
 animation_name = "dying"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_ft4pp")
+volume_db = 5.0
 
 [connection signal="input_event" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_input_event"]
 [connection signal="mouse_entered" from="PotionHandler/PotionThrowArea" to="PotionHandler" method="_on_potion_throw_area_mouse_entered"]
